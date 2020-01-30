@@ -1,0 +1,6 @@
+.DS_Store
+main.c
+test
+*.pdf
+*.swp
+_*.*.swp

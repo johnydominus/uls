@@ -1,0 +1,111 @@
+cd ..
+echo compile
+make clean
+make
+cp pathfinder ./tests/pathfinder
+cd ./tests
+
+echo test0: 0 islands
+./pathfinder valid0 > ./res/res.txt
+./pathfinder_unit valid0 > ./res/rests.txt
+diff ./res/rests.txt ./res/res.txt
+
+echo test1: no arguments
+./pathfinder > ./res/res.txt
+./pathfinder_unit > ./res/tst1.txt
+diff ./res/tst1.txt ./res/res.txt
+
+echo test2: no file
+./pathfinder islands > ./res/res.txt
+./pathfinder_unit islands > ./res/tst2.txt
+diff ./res/tst2.txt ./res/res.txt
+
+echo test3: empty file
+./pathfinder empty.txt > ./res/res.txt
+./pathfinder_unit empty.txt > ./res/tst3.txt
+diff ./res/tst3.txt ./res/res.txt
+
+echo test4: invalid1 - 4f in first line
+./pathfinder invalid1 > ./res/res.txt
+./pathfinder_unit invalid1 > ./res/tst4.txt
+diff ./res/tst4.txt ./res/res.txt
+
+echo test5: invalid2 - two '-' symbols between islands
+./pathfinder invalid2 > ./res/res.txt
+./pathfinder_unit invalid2 > ./res/tst5.
+diff ./res/tst5.txt ./res/res.txt
+
+echo test6: invalid3 - less islands number indicated than actual
+./pathfinder invalid3 > ./res/res.txt
+./pathfinder_unit invalid3 > ./res/tst6.txt
+diff ./res/tst6.txt ./res/res.txt
+
+echo test7: invalid4 - empty line
+./pathfinder invalid4 > ./res/res.txt
+./pathfinder_unit invalid4 > ./res/rests.txt
+diff ./res/rests.txt ./res/res.txt
+
+echo test8: invalid5 - more islands number indicated than actual
+./pathfinder invalid5 > ./res/res.txt
+./pathfinder_unit invalid5 > ./res/rests.txt
+diff ./res/rests.txt ./res/res.txt
+
+echo test 9: directory as an argument
+./pathfinder res > ./res/res.txt
+./pathfinder_unit res > ./res/rests.txt
+diff ./res/rests.txt ./res/res.txt
+
+echo test10: example1
+./pathfinder example1 > ./res/res.txt
+./pathfinder_unit example1 > ./res/tst7.txt
+diff ./res/tst7.txt ./res/res.txt
+
+echo test11: example2
+./pathfinder example2 > ./res/res.txt
+./pathfinder_unit example2 > ./res/tst8.txt
+diff ./res/tst8.txt ./res/res.txt
+
+echo test12: example3
+./pathfinder example3 > ./res/res.txt
+./pathfinder_unit example3 > ./res/rests.txt
+diff ./res/rests.txt ./res/res.txt
+
+echo test13: example4
+./pathfinder example4 > ./res/res.txt
+./pathfinder_unit example4 > ./res/rests.txt
+diff ./res/rests.txt ./res/res.txt
+
+echo test14: example5
+./pathfinder example5 > ./res/res.txt
+./pathfinder_unit example5 > ./res/rests.txt
+diff ./res/rests.txt ./res/res.txt
+
+echo test15: easy
+./pathfinder easy > ./res/res.txt
+./pathfinder_unit easy > ./res/tst9.txt
+diff ./res/tst9.txt ./res/res.txt
+
+echo test16: medium
+./pathfinder medium > ./res/res.txt
+./pathfinder_unit medium > ./res/tst10.txt
+diff ./res/tst10.txt ./res/res.txt
+
+echo test17: hard
+./pathfinder hard > ./res/res.txt
+./pathfinder_unit hard > ./res/tst11.txt
+diff ./res/tst11.txt ./res/res.txt
+
+echo test18: hardest
+./pathfinder hardest > ./res/res.txt
+./pathfinder_unit hardest > ./res/tst12.txt
+diff ./res/tst12.txt ./res/res.txt
+
+echo test 19: test1
+./pathfinder test1.txt > ./res/res.txt
+./pathfinder_unit test1.txt > ./res/rests.txt
+diff ./res/rests.txt ./res/res.txt
+
+echo test 20: test2
+./pathfinder test2.txt > ./res/res.txt
+./pathfinder_unit test2.txt > ./res/rests.txt
+diff ./res/rests.txt ./res/res.txt

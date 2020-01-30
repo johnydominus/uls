@@ -1,0 +1,183 @@
+INVESTIGATE
+
+- What is the file?
+    A file is a container in a computer system for storing information. Files used in computers are similar in features to that of paper documents used in library and office files. There are different types of files such as text files, data files, directory files, binary and graphic files, and these different types of files store different types of information. In a computer operating system, files can be stored on optical drives, hard drives or other types of storage devices.
+
+- What is the directory?
+    A directory is a location for storing files on your computer. Directories are found in a hierarchical file system, such as Linux, MS-DOS, OS/2, and Unix.
+
+- What is device files?
+    n Unix-like operating systems, a device file or special file is an interface to a device driver that appears in a file system as if it were an ordinary file. There are also special files in DOS, OS/2, and Windows. These special files allow an application program to interact with a device by using its device driver via standard input/output system calls. Using standard system calls simplifies many programming tasks, and leads to consistent user-space I/O mechanisms regardless of device features and functions.
+
+- Why do you need symbolic links?
+    Символическая («мягкая») ссылка (также «симлинк», от англ. Symbolic link) — специальный файл в файловой системе, в котором вместо пользовательских данных содержится путь к файлу, открываемому при обращении к данной ссылке (файлу).
+
+Целью ссылки может быть любой объект: например другая ссылка, файл, каталог или даже несуществующий файл (в последнем случае при попытке открыть его должно выдаваться сообщение об отсутствии файла). Ссылка, указывающая на несуществующий файл, называется висячей или битой.
+
+Символические ссылки используются для более удобной организации структуры файлов на компьютере, так как:
+
+позволяют для одного файла или каталога иметь несколько имён и различных атрибутов;
+свободны от некоторых ограничений, присущих жёстким ссылкам (последние действуют только в пределах одной файловой системы (одного раздела) и не могут ссылаться на каталоги).
+
+- What is the filesystem?
+    In computing, a file system or filesystem (often abbreviated to fs), controls how data is stored and retrieved. Without a file system, data placed in a storage medium would be one large body of data with no way to tell where one piece of data stops and the next begins. By separating the data into pieces and giving each piece a name, the data is easily isolated and identified. Taking its name from the way paper-based data management system is named, each group of data is called a "file". The structure and logic rules used to manage the groups of data and their names is called a "file system".
+
+- What is the UNIX filesystem?
+    In Unix and operating systems inspired by it, the file system is considered a central component of the operating system. It was also one of the first parts of the system to be designed and implemented by Ken Thompson in the first experimental version of Unix, dated 1969.
+    As in other operating systems, the filesystem provides information storage and retrieval, and one of several forms of interprocess communication, in that the many small programs that traditionally form a Unix system can store information in files so that other programs can read them, although pipes complemented it in this role starting with the Third Edition. Also, the filesystem provides access to other resources through so-called device files that are entry points to terminals, printers, and mice.
+
+- Do you familiar with conventional directory layout on MacOS?
+
+Directory	    Description
+
+/Applications	Self explanatory, this is where your Mac’s applications are kept
+/Developer	    The Developer directory appears only if you have installed Apple’s Developer Tools, and no surprise, contains developer related tools, documentation, and files.
+/Library	    Shared libraries, files necessary for the operating system to function properly, including settings, preferences, and other necessities (note: you also have a Libraries folder in your home directory, which holds files specific to that user).
+/Network	    largely self explanatory, network related devices, servers, libraries, etc
+/System	        System related files, libraries, preferences, critical for the proper function of Mac OS X
+/Users	        All user accounts on the machine and their accompanying unique files, settings, etc. Much like /home in Linux
+/Volumes	    Mounted devices and volumes, either virtual or real, such as hard disks, CD’s, DVD’s, DMG mounts, etc
+/	            Root directory, present on virtually all UNIX based file systems. Parent directory of all other files
+/bin	        Essential common binaries, holds files and programs needed to boot the operating system and run properly
+/etc	        Machine local system configuration, holds administrative, configuration, and other system files
+/dev	        Device files, all files that represent peripheral devices including keyboards, mice, trackpads, etc
+/usr	        Second major hierarchy, includes subdirectories that contain information, configuration files, and other essentials used by the operating system
+/sbin	        Essential system binaries, contains utilities for system administration
+/tmp	        Temporary files, caches, etc
+/var	        Variable data, contains files whose contents change as the operating system runs
+
+
+- What is command-line flags (options) and why are they useful?
+    "Flags" specifically, are Boolean arguments, set by the mere inclusion of the command-line argument, with no additional data needed or allowed for the argument. If you include the argument/option/flag, it counts as "true" and if you exclude it, it counts as "false".
+
+- Have you tried to use all the flags available in ls?
+
+     -@      Display extended attribute keys and sizes in long (-l) output.
+
+     -1      (The numeric digit ``one''.)  Force output to be one entry per
+             line.  This is the default when output is not to a terminal.
+
+     -A      List all entries except for . and ...  Always set for the super-
+             user.
+
+     -a      Include directory entries whose names begin with a dot (.).
+
+     -B      Force printing of non-printable characters (as defined by
+             ctype(3) and current locale settings) in file names as \xxx,
+             where xxx is the numeric value of the character in octal.
+
+     -b      As -B, but use C escape codes whenever possible.
+
+     -C      Force multi-column output; this is the default when output is to
+             a terminal.
+
+     -c      Use time when file status was last changed for sorting (-t) or
+             long printing (-l).
+
+     -d      Directories are listed as plain files (not searched recursively).
+
+     -e      Print the Access Control List (ACL) associated with the file, if
+             present, in long (-l) output.
+
+     -F      Display a slash (`/') immediately after each pathname that is a
+             directory, an asterisk (`*') after each that is executable, an at
+             sign (`@') after each symbolic link, an equals sign (`=') after
+             each socket, a percent sign (`%') after each whiteout, and a ver-
+             tical bar (`|') after each that is a FIFO.
+
+     -f      Output is not sorted.  This option turns on the -a option.
+
+     -G      Enable colorized output.  This option is equivalent to defining
+             CLICOLOR in the environment.  (See below.)
+
+     -g      This option is only available for compatibility with POSIX; it is
+             used to display the group name in the long (-l) format output
+             (the owner name is suppressed).
+
+     -H      Symbolic links on the command line are followed.  This option is
+             assumed if none of the -F, -d, or -l options are specified.
+
+     -h      When used with the -l option, use unit suffixes: Byte, Kilobyte,
+             Megabyte, Gigabyte, Terabyte and Petabyte in order to reduce the
+             number of digits to three or less using base 2 for sizes.
+
+     -i      For each file, print the file's file serial number (inode num-
+             ber).
+
+     -k      If the -s option is specified, print the file size allocation in
+             kilobytes, not blocks.  This option overrides the environment
+             variable BLOCKSIZE.
+
+     -L      Follow all symbolic links to final target and list the file or
+             directory the link references rather than the link itself.  This
+             option cancels the -P option.
+
+     -l      (The lowercase letter ``ell''.)  List in long format.  (See
+             below.)  If the output is to a terminal, a total sum for all the
+             file sizes is output on a line before the long listing.
+
+     -m      Stream output format; list files across the page, separated by
+             commas.
+
+     -n      Display user and group IDs numerically, rather than converting to
+             a user or group name in a long (-l) output.  This option turns on
+             the -l option.
+
+     -O      Include the file flags in a long (-l) output.
+
+     -o      List in long format, but omit the group id.
+
+     -P      If argument is a symbolic link, list the link itself rather than
+             the object the link references.  This option cancels the -H and
+             -L options.
+
+     -p      Write a slash (`/') after each filename if that file is a direc-
+             tory.
+
+     -q      Force printing of non-graphic characters in file names as the
+             character `?'; this is the default when output is to a terminal.
+
+     -R      Recursively list subdirectories encountered.
+
+     -r      Reverse the order of the sort to get reverse lexicographical
+             order or the oldest entries first (or largest files last, if com-
+             bined with sort by size
+
+     -S      Sort files by size
+
+     -s      Display the number of file system blocks actually used by each
+             file, in units of 512 bytes, where partial units are rounded up
+             to the next integer value.  If the output is to a terminal, a
+             total sum for all the file sizes is output on a line before the
+             listing.  The environment variable BLOCKSIZE overrides the unit
+             size of 512 bytes.
+
+     -T      When used with the -l (lowercase letter ``ell'') option, display
+             complete time information for the file, including month, day,
+             hour, minute, second, and year.
+
+     -t      Sort by time modified (most recently modified first) before sort-
+             ing the operands by lexicographical order.
+
+     -u      Use time of last access, instead of last modification of the file
+             for sorting (-t) or long printing (-l).
+
+     -U      Use time of file creation, instead of last modification for sort-
+             ing (-t) or long output (-l).
+
+     -v      Force unedited printing of non-graphic characters; this is the
+             default when output is not to a terminal.
+
+     -W      Display whiteouts when scanning directories.  S) flag).
+
+     -w      Force raw printing of non-printable characters.  This is the
+             default when output is not to a terminal.
+
+     -x      The same as -C, except that the multi-column output is produced
+
+- Why does the filesystem require file access control lists (ACL)?
+    An access-control list (ACL), with respect to a computer file system, is a list of permissions attached to an object. An ACL specifies which users or system processes are granted access to objects, as well as what operations are allowed on given objects.[1] Each entry in a typical ACL specifies a subject and an operation. For instance, if a file object has an ACL that contains (Alice: read,write; Bob: read), this would give Alice permission to read and write the file and Bob to only read it.
+
+- What is the role of the extended file attributes in the filesystem?
+   Extended file attributes are file system features that enable users to associate computer files with metadata not interpreted by the filesystem, whereas regular attributes have a purpose strictly defined by the filesystem (such as permissions or records of creation and modification times). Unlike forks, which can usually be as large as the maximum file size, extended attributes are usually limited in size to a value significantly smaller than the maximum file size. Typical uses include storing the author of a document, the character encoding of a plain-text document, or a checksum, cryptographic hash or digital certificate, and discretionary access control information.
+ 
