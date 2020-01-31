@@ -11,55 +11,50 @@
 #include <uuid/uuid.h>
 #include <time.h>
 
-typedef struct s_filestat {
-    char *name;
-    int size;
-} t_filestat;
-
-typedef enum s_flags {
-    dog,
-    one,
-    A,
-    a,
-    B,
-    b,
-    C,
-    c,
-    d,
-    e,
-    F,
-    f,
-    G,
-    g,
-    H,
-    h,
-    i,
-    k,
-    L,
-    l,
-    m,
-    n,
-    O,
-    o,
-    P,
-    p,
-    q,
-    R,
-    r,
-    S,
-    s,
-    T,
-    t,
-    U,
-    u,
-    v,
-    W,
-    w,
-    x
+typedef struct s_flags {
+    bool dog;
+    bool one;
+    bool A;
+    bool a;
+    bool B;
+    bool b;
+    bool C;
+    bool c;
+    bool d;
+    bool e;
+    bool F;
+    bool f;
+    bool G;
+    bool g;
+    bool H;
+    bool h;
+    bool i;
+    bool k;
+    bool L;
+    bool l;
+    bool m;
+    bool n;
+    bool O;
+    bool o;
+    bool P;
+    bool p;
+    bool q;
+    bool R;
+    bool r;
+    bool S;
+    bool s;
+    bool T;
+    bool t;
+    bool U;
+    bool u;
+    bool v;
+    bool W;
+    bool w;
+    bool x;
 } t_flags;
 
 typedef enum e_filetype {
-    M_FILE,
+    R_FILE,
     DIRECTORY,
     EXECUTABLE,
     SYMB_LINK,
@@ -69,7 +64,8 @@ typedef enum e_filetype {
 } t_filetype;
 
 typedef enum e_error {
-    NO_ARGS,
     NO_FILE,
     ILLEGAL_FLAG
 } t_error;
+
+t_flags *mx_init_flags(void);

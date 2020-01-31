@@ -8,8 +8,8 @@ FLAGS TODO:
 	-lh	!	uses sufixes for bytes, kilobytes, etc
 	-m	!	list files across the pages, separated by comas
 	-S	!	sort by size
-	-lT	!	displays complete time info
-	-F	!	displays 
+	-lT	!	displat complete time info
+	-F	!	dispays 
 				'/' after dir names 
 				'*' after exec. files 
 				'@' after symbolic links
@@ -49,12 +49,3 @@ OVERRIDES (last one determines the format used):
 	-c -u
 	-B -b -w -q
 	-H -L -P
-
-SORTING FLAGS
-	default		by name
-	-S		by size
-	-tc		by time when file status was last changed
-	-t		by time modified
-	-tu		by time last access
-	-tU		by time of file creation
-	

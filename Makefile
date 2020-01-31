@@ -3,7 +3,8 @@ INC = ./inc/uls.h
 INCLIB = ./libmx/inc/libmx.h
 HEADTMP = ./uls.h ./libmx.h
 
-SRC = ./main.c
+SRC = ./main.c \
+	  ./mx_init_flags.c
 
 SRCS = $(addprefix src/, $(SRC))
 
