@@ -5,23 +5,24 @@ int main (int argc, char **argv) {
     struct t_list *entries = NULL;
     DIR *m_dir = NULL;
     char *arg = NULL;
-    bool flag = true;
     t_flags *flags = mx_init_flags();
+    int i = 0;
 
     (void)argc;
-    for (int i = 0; i < argc; ++i) {
-        if (argc == 1) {}
+    for (i = 0; i < argc; ++i) {
+        if (i == 0) {}
         else {
-            if (i == 0) {}
-            else {
-                if (flag) {
-                    if (argv[i][0] == '-') {
-                        mx_flag_parser(flags);  //TODO this function
-                    } else 
-                        flag == false;
-                } else
-                    mx_save_info(argv[i], stats, entries);  //TODO this function
-            }
+            if (argv[i][0] == '-') {
+                mx_flag_parser(argv[i], flags);
+            } else 
+                break;
+        }
+    if (i == argc) {
+        arg = '.';
+    }
+    else {
+        for(; i < argc; ++i) {
+            mx_save_info(argv[i], stats, entries);
         }
     }
     if (argc > 1) {

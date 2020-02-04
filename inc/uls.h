@@ -69,3 +69,5 @@ typedef enum e_error {
 } t_error;
 
 t_flags *mx_init_flags(void);
+void mx_flag_parser (char *arg, t_flags *flags);
+void mx_error(t_error error_type, char *argument);

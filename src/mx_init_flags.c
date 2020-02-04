@@ -1,24 +1,13 @@
 #include "uls.h"
 
-static void dog_to_l_init(t_flags *flags);
-static void m_to_x_init(t_flags *flags);
-
-t_flags *mx_init_flags(void) {
-    t_flags *flags = (t_flags*)malloc(sizeof(t_flags));
-
-    dog_to_l_init(flags);
-    m_to_x_init(flags);
-    return flags;
-}
-
 static void dog_to_l_init(t_flags *flags) {
     flags->dog = false;
-    flags->one = false;
+    flags->one = true;
     flags->A = false;
     flags->a = false;
     flags->B = false;
     flags->b = false;
-    flags->C = false;
+    flags->C = true;
     flags->c = false;
     flags->d = false;
     flags->e = false;
@@ -41,7 +30,7 @@ static void m_to_x_init(t_flags *flags) {
     flags->o = false;
     flags->P = false;
     flags-> p = false;
-    flags-> q = false;
+    flags-> q = true;
     flags-> R = false;
     flags-> r = false;
     flags-> S = false;
@@ -54,4 +43,12 @@ static void m_to_x_init(t_flags *flags) {
     flags-> W = false;
     flags-> w = false;
     flags-> x = false;
+}
+
+t_flags *mx_init_flags(void) {
+    t_flags *flags = (t_flags*)malloc(sizeof(t_flags));
+
+    dog_to_l_init(flags);
+    m_to_x_init(flags);
+    return flags;
 }
