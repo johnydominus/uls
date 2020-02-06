@@ -58,3 +58,11 @@ SORTING FLAGS
 	-tu		by time last access
 	-tU		by time of file creation
 	
+
+
+[0] ./uls  	argc = 6; i = 5; margc = 1;
+[1] -l
+[2] -F
+[3] -G
+[4] -u
+[5] tests 
