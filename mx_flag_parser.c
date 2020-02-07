@@ -97,7 +97,7 @@ void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags) {
         if (argv[*i][0] == '-') {
             int len = mx_strlen(argv[*i]);
 
-            for (int j = 0; j < len; ++j) {
+            for (int j = 1; j < len; ++j) {
                 checkflag_one (argv[*i][j], flags);
                 checkflag_two (argv[*i][j], flags);
                 checkflag_three (argv[*i][j], flags);
@@ -123,3 +123,6 @@ void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags) {
 // c u
 // B b w q
 // H L P
+
+//TERMINAL DEFAULT
+// C q

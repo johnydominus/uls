@@ -11,7 +11,9 @@ SRC = ./main.c \
 	  ./mx_output.c \
 	  ./mx_process_arg.c \
 	  ./mx_save_args.c \
-	  ./mx_save_info.c
+	  ./mx_save_info.c \
+	  ./mx_process_dir.c \
+	  ./mx_sort_lists.c
 
 SRCS = $(addprefix src/, $(SRC))
 

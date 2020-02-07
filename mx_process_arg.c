@@ -22,14 +22,13 @@ void mx_process_arg(char **args, t_flags *flags) {
     t_list **stats = (t_list**)malloc(sizeof(t_list*));
     t_list **entries = (t_list**)malloc(sizeof(t_list*));
     char **temp_args = args;
+    int i = 0;
 
     *stats = NULL;
     *entries = NULL;
-    while (temp_args) {
-        mx_save_info(*temp_args, flags, stats, entries);    //TODO
-        ++temp_args;
-    }
-    //mx_sort_lists(flags, stats, entries);                   //TODO
-    mx_output(flags, stats, entries);                       //TODO
+    while (temp_args[i])
+        mx_save_info(temp_args[i++], flags, stats, entries);
+    mx_sort_lists(flags, stats, entries);                   //TODO
+    mx_output(flags, stats, entries, args);
     free_lists(stats, entries);
 }

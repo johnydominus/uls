@@ -73,9 +73,17 @@ bool mx_check_flag_validity (char c);
 t_flags *mx_init_flags(void);
 void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags);
 void mx_error(t_error error_type, char *argument);
-void mx_output(t_flags *flags, t_list **stats, t_list **entries);
 void mx_process_arg(char **args, t_flags *flags);
-void mx_save_info(char *arg, 
+void mx_sort_lists (t_flags *flags, t_list **stats, t_list **entries);
+void mx_output(t_flags *flags,
+               t_list **stats,
+               t_list **entries,
+               char **args);
+void mx_save_info(char *arg,
                    t_flags *flags,
                    t_list **stats,
                    t_list **entries);
+void mx_process_dir(char *arg,
+                           t_list **stats,
+                           t_list **entries,
+                           t_flags *flags);

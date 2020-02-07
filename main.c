@@ -11,16 +11,15 @@ int main (int argc, char **argv) {
     args = mx_save_args(&i, &margc, argc, argv);
     mx_bubble_sort(args, margc);
     //
+    struct winsize w;
+    
+    ioctl(0, TIOCGWINSZ, &w);
+    //printf ("lines %d\n", w.ws_row);
+    //printf ("columns %d\n", w.ws_col);
     mx_process_arg(args, flags);
     free(flags);
     int j = 0;
     while (args[j])
         free(args[j++]);
     free(args);
-    //lstat(arg, m_stat);
-    //m_dir = opendir(arg);
-    //while ((entry = readdir(m_dir)) != NULL) {
-    //    if(entry->d_name[0] != '.')
-    //        printf("%s\n", entry->d_name);
-    //}
 }
