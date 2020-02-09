@@ -8,6 +8,7 @@ EXAMPLE CODE
 https://github.com/hugohow/ft_ls						- working ls from 42
 https://github.com/coreutils/coreutils/blob/master/src/ls.c 			- original ls source code
 
+-------------------------------
 _______________
 |1|2|3|4|5|6|7|
 ---------------
@@ -18,3 +19,7 @@ _______________
 
 cols = width / (longest_len + tab);
 rows = 
+
+
+-------------------------------
+
