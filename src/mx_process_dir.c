@@ -25,6 +25,7 @@ static char *rec_arg(char *arg, struct dirent *entry) {
     return new_arg;
 }
 
+//FILE PRIME FUNCTION
 void mx_process_dir(char *arg, 
                            t_list **stats, 
                            t_list **entries, 
@@ -38,13 +39,17 @@ void mx_process_dir(char *arg,
 
     if ((m_dir = opendir(arg)) != NULL) {
         while ((temp_entry = readdir(m_dir)) != NULL) {
+            if (!flags->a) {
+                if (temp_entry->d_name[0] == '.')
+                    continue;
+            }
             new_arg[0] = rec_arg(arg, temp_entry);
             lstat(new_arg[0], temp_stat);
             mx_push_front(stats, temp_stat);
             mx_push_front(entries, temp_entry);
             if (temp_entry->d_type == DT_DIR && flags->R) {
             if (!mx_strcmp(temp_entry->d_name, ".") 
-             || !mx_strcmp(temp_entry->d_name, "..")) {}
+                || !mx_strcmp(temp_entry->d_name, "..")) {}
             else
                 mx_process_arg(new_arg, flags);
             }

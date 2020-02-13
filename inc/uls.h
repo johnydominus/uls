@@ -75,6 +75,7 @@ void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags);
 void mx_error(t_error error_type, char *argument);
 void mx_process_arg(char **args, t_flags *flags);
 void mx_sort_lists (t_flags *flags, t_list **stats, t_list **entries);
+void mx_check_flags (char c, t_flags *flags);
 void mx_output(t_flags *flags,
                t_list **stats,
                t_list **entries,

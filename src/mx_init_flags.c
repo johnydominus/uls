@@ -3,7 +3,7 @@
 static void dog_to_l_init(t_flags *flags) {
     flags->dog = false;
     flags->one = false;
-    flags->A = false;
+    flags->A = true;
     flags->a = false;
     flags->B = false;
     flags->b = false;
@@ -53,3 +53,18 @@ t_flags *mx_init_flags(void) {
     m_to_x_init(flags);
     return flags;
 }
+
+//ALL FLAGS
+//@1AaBbCcdeFfGgHhikLlmnOoPpqRrSsTtuUvWwx
+
+//OVERLAPING
+// 1 C x
+// c u
+// B b w q
+// H L P
+
+//TERMINAL DEFAULT
+// C q
+
+//SUPER-USER DEFAULT
+// A

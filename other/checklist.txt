@@ -1,3 +1,9 @@
+DONE:
+A a p f
+
+IN PROGRESS:
+F R C 1 x r l
+
 FLAGS TODO:                                                                          
 	-l      B	long format                                                                                                                                              	-R	C?	recursively list subdirectories	encountered		
 	-a -A   C   	with and without '.' and '..'       
@@ -15,7 +21,7 @@ FLAGS TODO:
 				'@' after symbolic links
 				'=' after sockets
 				'%' after whiteout
-				'|' after each that is FIFO (!??!?!?!?!)
+				'|' after each that is FIFO
 
 	-f 		output not sorted
 	-i		prints files serial number (inode number)
