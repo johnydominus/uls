@@ -1,5 +1,25 @@
-https://github.com/hugohow/ft_ls				- working ls from 42
-https://github.com/coreutils/coreutils/blob/master/src/ls.c 	- original ls source code
-https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lstat	- lstat documentation
-http://www.firststeps.ru/linux/r.php?20				- diropen documentation
+DOCUMENTATION
+https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lstat			- lstat documentation
+http://www.firststeps.ru/linux/r.php?20						- diropen man
+http://man7.org/linux/man-pages/man3/readdir.3.html				- diropen documentation
+https://www.gnu.org/software/libc/manual/html_node/Directory-Entries.html	- struct dirent documentation
+
+EXAMPLE CODE
+https://github.com/hugohow/ft_ls						- working ls from 42
+https://github.com/coreutils/coreutils/blob/master/src/ls.c 			- original ls source code
+
+-------------------------------
+_______________
+|1|2|3|4|5|6|7|
+---------------
+|2| | | | | | |
+---------------
+|3| | | | | | |
+---------------
+
+cols = width / (longest_len + tab);
+rows = 
+
+
+-------------------------------
 

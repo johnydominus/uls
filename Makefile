@@ -3,7 +3,18 @@ INC = ./inc/uls.h
 INCLIB = ./libmx/inc/libmx.h
 HEADTMP = ./uls.h ./libmx.h
 
-SRC = ./main.c
+SRC = ./main.c \
+	  ./mx_check_flag_validity.c \
+	  ./mx_error.c \
+	  ./mx_flag_parser.c \
+	  ./mx_init_flags.c \
+	  ./mx_output.c \
+	  ./mx_process_arg.c \
+	  ./mx_save_args.c \
+	  ./mx_save_info.c \
+	  ./mx_process_dir.c \
+	  ./mx_sort_lists.c \
+	  ./mx_check_flags.c
 
 SRCS = $(addprefix src/, $(SRC))
 

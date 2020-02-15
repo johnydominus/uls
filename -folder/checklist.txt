@@ -1,0 +1,51 @@
+FLAGS TODO:                                                                          
+	-l      B	long format                                                                                                                                              	-R	C?	recursively list subdirectories	encountered		
+	-a -A   C   	with and without '.' and '..'       
+		-aR -AR
+	-G	C?	enable colorized output
+	                                                                                                                   	-1      !   	output per line                                                                                                                                                                                                                                                                                                                                                                     	-C      !      	multi-column output (default to a terminal)
+	-x	!	the same as -C, except that the output sorted across (by lines)
+	-lh	!	uses sufixes for bytes, kilobytes, etc
+	-m	!	list files across the pages, separated by comas
+	-S	!	sort by size
+	-lT	!	displat complete time info
+	-F	!	dispays 
+				'/' after dir names 
+				'*' after exec. files 
+				'@' after symbolic links
+				'=' after sockets
+				'%' after whiteout
+				'|' after each that is FIFO (!??!?!?!?!)
+
+	-f 		output not sorted
+	-i		prints files serial number (inode number)
+	-c		use time when file status was last changed with -t and -l
+	-t		sort by time modified
+		-lc -tc -ltc -lt
+	-u		use time of last access instead of las modification of -t or -l
+	-U		use time of file creation -||-
+	-d		directories are listed as plain files (not searched recursively)
+	-n		display user and group ID's numerically, turns on -l
+	-lO 		include the file flags
+	-o		list in long format, but omit the group id
+	-r 		reverse the order of the sort
+
+	-g	?	only for POSIX: displays group name, user name suppressed
+	-H	?	symbolic links on the command line are followed
+	-e	?	print the ACL if present
+	-B      ?   	printing non-printable characters        
+	-q 	?	force printing of non-graphic characters in file names as the character '?' (Default when output to terminal)                                                                                                                	-b      ?   	as -B, but use C escape codes whenever possible    
+	-v	?	force unedited printing of non-graphic characters (default for non-terminal output)
+	-W	?	display	whiteouts when scanning directories 
+	-w 	?	force raw printing of non-printable characters
+	-l@     ?	extended attribute keys and sizes
+	-s	?	display the number of file system blocks actually used by each file
+	-sk 	?	print the file size allocation in kilobytes, not blocks
+	-L	? 	follow all symbolic links to final target and list the file or directory the link references rather than the link itself
+	-P	?	if argument is a symbolic link, list the link itself rather than the object the link references. Cancels -H and -L
+	
+OVERRIDES (last one determines the format used):
+	-1 -C -x -l
+	-c -u
+	-B -b -w -q
+	-H -L -P

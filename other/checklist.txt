@@ -1,3 +1,9 @@
+DONE:
+A a p f
+
+IN PROGRESS:
+F R C 1 x r l
+
 FLAGS TODO:                                                                          
 	-l      B	long format                                                                                                                                              	-R	C?	recursively list subdirectories	encountered		
 	-a -A   C   	with and without '.' and '..'       
@@ -8,14 +14,14 @@ FLAGS TODO:
 	-lh	!	uses sufixes for bytes, kilobytes, etc
 	-m	!	list files across the pages, separated by comas
 	-S	!	sort by size
-	-lT	!	displat complete time info
-	-F	!	dispays 
+	-lT	!	displays complete time info
+	-F	!	displays 
 				'/' after dir names 
 				'*' after exec. files 
 				'@' after symbolic links
 				'=' after sockets
 				'%' after whiteout
-				'|' after each that is FIFO (!??!?!?!?!)
+				'|' after each that is FIFO
 
 	-f 		output not sorted
 	-i		prints files serial number (inode number)
@@ -49,3 +55,20 @@ OVERRIDES (last one determines the format used):
 	-c -u
 	-B -b -w -q
 	-H -L -P
+
+SORTING FLAGS
+	default		by name
+	-S		by size
+	-tc		by time when file status was last changed
+	-t		by time modified
+	-tu		by time last access
+	-tU		by time of file creation
+	
+
+
+[0] ./uls  	argc = 6; i = 5; margc = 1;
+[1] -l
+[2] -F
+[3] -G
+[4] -u
+[5] tests 
