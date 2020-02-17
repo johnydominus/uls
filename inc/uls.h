@@ -53,6 +53,26 @@ typedef struct s_flags {
     bool x;
 } t_flags;
 
+typedef struct s_core {
+    dev_t m_dev;           //device
+    ino_t m_ino;           //inode
+    mode_t m_mode;         //access mode
+    nlink_t m_nlink;       //hard link ammount
+    uid_t m_uid;           //user-owner id
+    gid_t m_gid;           //group-owner id
+    dev_t m_rdev;          //device type
+    off_t m_size;          //general size in bytes
+    blksize_t m_blksize;   //input-output block size in file system
+    blkcnt_t m_blocks;     //ammount of allocated blocks
+    time_t m_atime;        //last access time
+    time_t m_mtime;        //last modification time
+    time_t m_ctime;        //last change time
+    ino_t d_fileno;         //file serial number
+    unsigned char d_namlen; //name length
+    unsigned char d_type;   //filetype
+    char d_name[];          //null-terminated file name
+} t_core;
+
 typedef enum e_filetype {
     R_FILE,
     DIRECTORY,
