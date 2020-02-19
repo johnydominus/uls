@@ -1,6 +1,7 @@
 #include "uls.h"
 
 void mx_output(t_flags *flags, t_list **files, char **args) {
+    printf("mx_output\n");
     t_list *temp_file = *files;
     static bool first = true;
 

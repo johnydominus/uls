@@ -3,6 +3,7 @@
 //TODO: static funct for free()
 
 void mx_error(t_error error_type, char *argument) {
+    printf("mx_error\n");
     char *arg = mx_strndup(argument, 1);
     
     switch (error_type) {

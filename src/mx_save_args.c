@@ -1,6 +1,7 @@
 #include "uls.h"
 
 char **mx_save_args (int *i, int *margc, int argc, char **argv) {
+    printf("mx_save_args\n");
     char **args = NULL;
     *margc = argc - *i;
 

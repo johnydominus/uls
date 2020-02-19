@@ -35,6 +35,7 @@ static char *rec_arg(char *arg, struct dirent *entry) {
 
 //FILE PRIME FUNCTION!
 void mx_save_info(char *arg, t_flags *flags, t_list **files) {
+    printf("mx_save_info\n");
     DIR *m_dir = NULL;
     struct stat *temp_stat = NULL;
     struct dirent *temp_entry = NULL;

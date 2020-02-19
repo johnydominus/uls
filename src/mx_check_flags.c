@@ -93,7 +93,8 @@ static void checkflag_four (char c, t_flags *flags) {
 
 //FILE PRIME FUNCTION
 void mx_check_flags (char c, t_flags *flags) {
-    checkflag_one (c, flags);
+    printf("mx_check_flags\n");
+    checkflag_one (c,flags);
     checkflag_two (c, flags);
     checkflag_three (c, flags);
     checkflag_four (c, flags);

@@ -25,7 +25,7 @@ CFLGS = -std=c11 -Wall -Wpedantic -Werror -Wextra
 all: install clean
 
 install:
-	@make -C libmx install
+#	@make -C libmx install
 	@cp $(INC) $(INCLIB) $(SRCS) .
 	@clang $(CFLGS) -c $(SRC)
 	@mkdir obj
