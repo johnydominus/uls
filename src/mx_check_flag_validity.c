@@ -1,6 +1,7 @@
 #include "uls.h"
 
 bool mx_check_flag_validity (char c) {
+    printf("mx_check_flag_validity\n");
     char *flags_list = mx_strdup("@1AaBbCcdeFfGgHhikLlmnOoPpqRrSsTtuUvWwx");
     int len = mx_strlen(flags_list);
     bool legal = false;

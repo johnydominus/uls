@@ -47,6 +47,7 @@ static void m_to_x_init(t_flags *flags) {
 
 //FILE PRIME FUNCTION!
 t_flags *mx_init_flags(void) {
+    printf("mx_init_flags\n");
     t_flags *flags = (t_flags*)malloc(sizeof(t_flags));
 
     dog_to_l_init(flags);

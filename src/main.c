@@ -1,6 +1,7 @@
 #include "uls.h"
 
 int main (int argc, char **argv) {
+    printf("main\n");
     t_flags *flags = mx_init_flags();
     char **args = NULL;
     int margc;
@@ -16,6 +17,11 @@ int main (int argc, char **argv) {
     ioctl(0, TIOCGWINSZ, &w);
     //printf ("lines %d\n", w.ws_row);
     //printf ("columns %d\n", w.ws_col);
+ //   printf("?\n");
+ //   if(args)
+ //       printf("%s\n", args[0]);
+ //   if(flags)
+ //       printf("flags\n");
     mx_process_arg(args, flags);
     free(flags);
     int j = 0;

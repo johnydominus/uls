@@ -11,6 +11,15 @@
 #include <uuid/uuid.h>
 #include <time.h>
 
+#define MX_ISBLK(m) (((m) & S_IFMT) == S_IFBLK)     //block special
+#define MX_ISCHR(m) (((m) & S_IFMT) == S_IFCHR)     //char special
+#define MX_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)     //directory
+#define MX_ISFIFO(m) (((m) & S_IFMT) == S_IFIFO)    //fifo or socket
+#define MX_ISREG(m) (((m) & S_IFMT) == S_IFREG)     //regular fil
+#define MX_ISLNK(m) (((m) & S_IFMT) == S_IFLNK)     //symbolic link
+#define MX_ISSOCK(m) (((m) & S_IFMT) == S_IFSOCK)   //socket
+#define MX_ISEXEC(m) (((m) & S_IFMT) == S_IXUSR)    //executable
+
 typedef struct s_flags {
     bool dog;
     bool one;
@@ -53,25 +62,26 @@ typedef struct s_flags {
     bool x;
 } t_flags;
 
-typedef struct s_core {
-    dev_t m_dev;           //device
-    ino_t m_ino;           //inode
-    mode_t m_mode;         //access mode
-    nlink_t m_nlink;       //hard link ammount
-    uid_t m_uid;           //user-owner id
-    gid_t m_gid;           //group-owner id
-    dev_t m_rdev;          //device type
-    off_t m_size;          //general size in bytes
-    blksize_t m_blksize;   //input-output block size in file system
-    blkcnt_t m_blocks;     //ammount of allocated blocks
-    time_t m_atime;        //last access time
-    time_t m_mtime;        //last modification time
-    time_t m_ctime;        //last change time
-    ino_t d_fileno;         //file serial number
-    unsigned char d_namlen; //name length
-    unsigned char d_type;   //filetype
-    char d_name[];          //null-terminated file name
-} t_core;
+typedef struct s_file {
+    dev_t m_dev;                //inode's device
+    ino_t m_ino;                //inode's number
+    mode_t m_mode;              //inode's protection mode
+    nlink_t m_nlink;            //number of hard links
+    uid_t m_uid;                //user id of the file's owner
+    gid_t m_gid;                //group id of the file's group
+    dev_t m_rdev;               //device type
+    off_t m_size;               //file size, in bytes
+    blkcnt_t m_blocks;          //blocks allocated for file
+    blksize_t m_blksize;        //optimal blocksize for I/O
+    time_t m_atime;             //time of last access
+//    long m_atimensec;           //nsec --------------
+    time_t m_mtime;             //time of last modification
+//    long m_mtimensec;           //nsec --------------------    
+    time_t m_ctime;             //time of last file status change
+//    long m_ctimensec;           //nsec --------------------------
+    char *f_name;
+    t_list **subdir;
+} t_file;
 
 typedef enum e_filetype {
     R_FILE,
@@ -94,17 +104,6 @@ t_flags *mx_init_flags(void);
 void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags);
 void mx_error(t_error error_type, char *argument);
 void mx_process_arg(char **args, t_flags *flags);
-void mx_sort_lists (t_flags *flags, t_list **stats, t_list **entries);
+void mx_sort_lists (t_flags *files, t_list **entries);
 void mx_check_flags (char c, t_flags *flags);
-void mx_output(t_flags *flags,
-               t_list **stats,
-               t_list **entries,
-               char **args);
-void mx_save_info(char *arg,
-                   t_flags *flags,
-                   t_list **stats,
-                   t_list **entries);
-void mx_process_dir(char *arg,
-                           t_list **stats,
-                           t_list **entries,
-                           t_flags *flags);
+void mx_output(t_flags *flags, t_list **files, char **args);

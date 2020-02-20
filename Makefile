@@ -11,8 +11,6 @@ SRC = ./main.c \
 	  ./mx_output.c \
 	  ./mx_process_arg.c \
 	  ./mx_save_args.c \
-	  ./mx_save_info.c \
-	  ./mx_process_dir.c \
 	  ./mx_sort_lists.c \
 	  ./mx_check_flags.c
 
@@ -27,7 +25,7 @@ CFLGS = -std=c11 -Wall -Wpedantic -Werror -Wextra
 all: install clean
 
 install:
-	@make -C libmx install
+#	@make -C libmx install
 	@cp $(INC) $(INCLIB) $(SRCS) .
 	@clang $(CFLGS) -c $(SRC)
 	@mkdir obj

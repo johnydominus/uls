@@ -1,13 +1,8 @@
 #include "uls.h"
 
-void mx_output(t_flags *flags, 
-               t_list **stats, 
-               t_list **entries, 
-               char **args) {
-    (void)stats;
-    (void)flags;
-    t_list *temp_entry = *entries;
-    t_list *temp_stat = *stats;
+void mx_output(t_flags *flags, t_list **files, char **args) {
+    printf("mx_output\n");
+    t_list *temp_file = *files;
     static bool first = true;
 
     if (!first) {
@@ -18,34 +13,32 @@ void mx_output(t_flags *flags,
         }
     }
     first = false;
-    while(temp_entry) {
-        struct dirent *temp_dirent = temp_entry->data;
-        struct stat *temp_st = temp_stat->data;
+    while(temp_file) {
+        t_file *temp_data = temp_file->data;
 
         if (flags->A) {
-            if (!mx_strcmp(temp_dirent->d_name, ".") 
-             || !mx_strcmp(temp_dirent->d_name, "..")) {
-                temp_entry = temp_entry->next;
+            if (!mx_strcmp(temp_data->f_name, ".") 
+             || !mx_strcmp(temp_data->f_name, "..")) {
+                temp_file = temp_file->next;
                 continue;
              }
         }
-        if (mx_strlen(temp_dirent->d_name) > 0) {   //TODO: unprinted characters
-            mx_printstr(temp_dirent->d_name);
+        if (mx_strlen(temp_data->f_name) > 0) {     //TODO: unprinted characters
+            mx_printstr(temp_data->f_name);
             if (flags->F || flags->p) {
-            if (temp_dirent->d_type == DT_DIR)
-                mx_printchar('/');
-            else if (flags->F && temp_dirent->d_type == DT_LNK)
-                mx_printchar('@');
-            else if (flags->F && temp_dirent->d_type == DT_SOCK)
-                mx_printchar('=');
-            else if (flags->F && temp_dirent->d_type == DT_FIFO)
-                mx_printchar('|');
-            else if (flags->F && temp_st && temp_st->st_mode & S_IXUSR)
-                mx_printchar('*');
+                if (MX_ISDIR(temp_data->m_mode))        //
+                    mx_printchar('/');
+                else if (MX_ISLNK(temp_data->m_mode))
+                    mx_printchar('@');
+                else if (MX_ISSOCK(temp_data->m_mode))
+                    mx_printchar('=');
+                else if (MX_ISFIFO(temp_data->m_mode))
+                    mx_printchar('|');
+                else if (MX_ISEXEC(temp_data->m_mode))
+                    mx_printchar('*');
             }
             mx_printchar('\n');
         }
-        temp_entry = temp_entry->next;
-        temp_stat = temp_stat->next;
+        temp_file = temp_file->next;
     }
 }
