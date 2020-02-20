@@ -1,21 +1,24 @@
 DONE:
-A a p f
+A a p f F
 
 IN PROGRESS:
-F R C 1 x r l
+R C 1 x r l
+
+TODO:
+G lT S 
 
 FLAGS TODO:                                                                          
 	-l      B	long format                                                                                                                                              	-R	C?	recursively list subdirectories	encountered		
 	-a -A   C   	with and without '.' and '..'       
 		-aR -AR
 	-G	C?	enable colorized output
-	                                                                                                                   	-1      !   	output per line                                                                                                                                                                                                                                                                                                                                                                     	-C      !      	multi-column output (default to a terminal)
+	-1      !   	output per line                                                                                                                                                                                                                                                                                                                                                                     	-C      !      	multi-column output (default to a terminal)
 	-x	!	the same as -C, except that the output sorted across (by lines)
 	-lh	!	uses sufixes for bytes, kilobytes, etc
 	-m	!	list files across the pages, separated by comas
 	-S	!	sort by size
 	-lT	!	displays complete time info
-	-F	!	displays 
+	-F	!	display
 				'/' after dir names 
 				'*' after exec. files 
 				'@' after symbolic links
@@ -23,7 +26,7 @@ FLAGS TODO:
 				'%' after whiteout
 				'|' after each that is FIFO
 
-	-f 		output not sorted
+	-f 	!	output not sorted
 	-i		prints files serial number (inode number)
 	-c		use time when file status was last changed with -t and -l
 	-t		sort by time modified
@@ -63,12 +66,3 @@ SORTING FLAGS
 	-t		by time modified
 	-tu		by time last access
 	-tU		by time of file creation
-	
-
-
-[0] ./uls  	argc = 6; i = 5; margc = 1;
-[1] -l
-[2] -F
-[3] -G
-[4] -u
-[5] tests 
