@@ -43,6 +43,7 @@ static void m_to_x_init(t_flags *flags) {
     flags-> W = false;
     flags-> w = false;
     flags-> x = false;
+    flags->first = true;
 }
 
 //FILE PRIME FUNCTION!

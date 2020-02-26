@@ -11,7 +11,15 @@
 #include <uuid/uuid.h>
 #include <time.h>
 
-#define TEST true
+#define TEST false
+
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
 
 #define MX_ISBLK(m) (((m) & S_IFMT) == S_IFBLK)     //block special
 #define MX_ISCHR(m) (((m) & S_IFMT) == S_IFCHR)     //char special
@@ -62,6 +70,7 @@ typedef struct s_flags {
     bool W;
     bool w;
     bool x;
+    bool first;
 } t_flags;
 
 typedef struct s_file {
@@ -75,13 +84,13 @@ typedef struct s_file {
     off_t m_size;               //file size, in bytes
     blkcnt_t m_blocks;          //blocks allocated for file
     blksize_t m_blksize;        //optimal blocksize for I/O
-    struct timespec m_atime;             //time of last access
+    struct timespec m_atime;    //time of last access
 //    long m_atimensec;           //nsec --------------
-    struct timespec m_mtime;             //time of last modification
-//    long m_mtimensec;           //nsec --------------------    
-    struct timespec m_ctime;             //time of last file status change
-    struct timespec m_btime;
+    struct timespec m_mtime;    //time of last modification
+//    long m_mtimensec;           //nsec --------------------
+    struct timespec m_ctime;    //time of last file status change
 //    long m_ctimensec;           //nsec --------------------------
+    struct timespec m_btime;    //time of file creation
     char *f_name;
     char *path;
     t_list **subdir;
@@ -89,12 +98,15 @@ typedef struct s_file {
 
 typedef enum e_filetype {
     R_FILE,
+    SP_CHAR,
     DIRECTORY,
     EXECUTABLE,
     SYMB_LINK,
     SOCKET,
     WHITEOUT,
-    FIFO
+    FIFO,
+    BLOCK,
+    NONE
 } t_filetype;
 
 typedef enum e_error {
@@ -104,11 +116,11 @@ typedef enum e_error {
 
 bool mx_check_flag_validity (char c);
 t_flags *mx_init_flags(void);
-void mx_error(t_error error_type, char *argument);
 t_file *mx_create_file(char *name, char *path);
 char **mx_save_args (int *i, int *margc, int argc, char **argv);
+void mx_error(t_error error_type, char *argument);
 void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags);
 void mx_process_arg(t_list **files, t_flags *flags);
 void mx_sort_lists (t_list **files, t_flags *flags);
-void mx_output(t_list **files, t_flags *flags);
+void mx_output(t_list **files, t_flags *flags, char *path);
 void mx_check_flags (char c, t_flags *flags);

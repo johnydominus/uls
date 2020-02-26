@@ -1,7 +1,24 @@
 #include "uls.h"
 
+static char *make_fullpath(char *name, char *path) {
+    char *new_arg = NULL;
+    if (TEST) printf(">make_fullpath\n");
+    if (!mx_strcmp(path, "")) 
+        new_arg = mx_strdup(name);
+    else if (mx_strlen(path) > 0 && path[mx_strlen(path) - 1] == '/') {
+        new_arg = mx_strjoin(path, name);
+    }
+    else {
+        char *temp_arg = mx_strjoin(path, "/");
+        new_arg = mx_strjoin(temp_arg, name);
+        free(temp_arg);
+    }
+    if (TEST) printf(">argument: %s\n", new_arg);
+    return new_arg;
+}
+
 t_file *mx_create_file(char *name, char *path) {
-    if (TEST) printf(">copy_info\n");
+    if (TEST) printf(">mx_create_file\n");
     t_file *new_file = (t_file*)malloc(sizeof(t_file));
     struct stat *fstat = (struct stat*)malloc(sizeof(struct stat));
     lstat(path, fstat);
@@ -39,10 +56,11 @@ t_file *mx_create_file(char *name, char *path) {
     if (TEST) printf(">f_name\n");
     new_file->f_name = mx_strdup(name);
     if (TEST) printf(">full_path\n");
-    new_file->path = mx_strdup(path);
+    new_file->path = make_fullpath(name, path);
+    if (TEST) printf(">subdir create\n");
     new_file->subdir = (t_list**)malloc(sizeof(t_list*));
     *(new_file->subdir) = NULL;
-    if (TEST) printf(">copy done!\n");
+    if (TEST) printf(">file created!\n");
     free (fstat);
     return new_file;
 }

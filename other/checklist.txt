@@ -7,6 +7,26 @@ R C 1 x r l
 TODO:
 G lT S 
 
+-G:
+directory   blue
+sym.link    magenta
+socket      green
+block       brown
+executable  red
+char        
+
+1   ex  directory               blue on default
+2   fx  sym link                magenta on default
+3   cx  socket                  green on default
+4   dx  pipe                    brown on default
+5   bx  executable              red on default
+6   eg  block spec              blue on cyan
+7   ed  char spec               blue on brown
+8   ab  exec with setuid bit set                    black on red
+9   ag  exec with setgid bit set                    black on cyan
+10  ac  dir writable to others with sticky bit      black on green
+11  ad  dir writable to others without sticky bit   black on brown
+
 FLAGS TODO:                                                                          
 	-l      B	long format                                                                                                                                              	-R	C?	recursively list subdirectories	encountered		
 	-a -A   C   	with and without '.' and '..'       

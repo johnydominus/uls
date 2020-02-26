@@ -1,49 +1,67 @@
 #include "uls.h"
 
-void mx_output(t_list **files, t_flags *flags) {
+static void set_color(mode_t mode) {
+    if (MX_ISLNK(mode))
+        mx_printstr(ANSI_COLOR_MAGENTA);
+    else if (MX_ISSOCK(mode))
+        mx_printstr(ANSI_COLOR_GREEN);
+    else if (MX_ISEXEC(mode))
+        mx_printstr(ANSI_COLOR_RED);
+    else if (MX_ISDIR(mode))
+        mx_printstr(ANSI_COLOR_BLUE);
+}
+
+static void mx_print_filename (t_file *file, t_flags *flags) {
+    if (TEST) printf(">print_filename\n");
+    if (flags->G)
+        set_color(file->m_mode);
+    mx_printstr(file->f_name);
+    if (flags->F || flags->p) {
+        if (MX_ISDIR(file->m_mode))
+            mx_printchar('/');
+    }
+    if (flags->F) {
+        if (MX_ISLNK(file->m_mode))
+            mx_printchar('@');
+        else if (MX_ISSOCK(file->m_mode))
+            mx_printchar('=');
+        else if (MX_ISFIFO(file->m_mode))
+            mx_printchar('|');
+        else if (MX_ISEXEC(file->m_mode))
+            mx_printchar('*');
+    }
+    if (flags->G)
+        mx_printstr(ANSI_COLOR_RESET);
+}
+
+void mx_output(t_list **files, t_flags *flags, char *path) {
     if (TEST) printf(">mx_output\n");
     t_list *current_file = *files;
-    static bool first = true;
-
+    
+    if (!flags->first) {
+        mx_printchar('\n');
+        mx_printstr(path);
+        mx_printstr(":\n");
+    }
+    flags->first = false;
     while (current_file) {
         t_file *current_data = current_file->data;
         t_list *temp_file = *(current_data->subdir);
-        t_file *t_data = temp_file->data;
 
-        if (!first && MX_ISDIR(t_data->m_mode)) {
-            mx_printchar('\n');
-            if (flags->R) {
-                mx_printstr(current_data->path);
-                mx_printstr(":\n");
-            }
-        }
-        else
-            continue;
-        first = false;
-        while(temp_file) {
+        static int i = 0;
+        if (TEST) printf("%d %s\n", i++, current_data->f_name);
+
+        while (temp_file) {
             t_file *temp_data = temp_file->data;
-
             if (flags->A) {
-                if (!mx_strcmp(temp_data->f_name, ".") 
-                || !mx_strcmp(temp_data->f_name, "..")) {
+                if (!mx_strcmp(temp_data->f_name, ".")
+                    || !mx_strcmp(temp_data->f_name, "..")) {
                     temp_file = temp_file->next;
                     continue;
                 }
             }
-            if (mx_strlen(temp_data->f_name) > 0) {     //TODO: unprinted characters
-                mx_printstr(temp_data->f_name);
-                if (flags->F || flags->p) {
-                    if (MX_ISDIR(temp_data->m_mode))        //
-                        mx_printchar('/');
-                    else if (MX_ISLNK(temp_data->m_mode))
-                        mx_printchar('@');
-                    else if (MX_ISSOCK(temp_data->m_mode))
-                        mx_printchar('=');
-                    else if (MX_ISFIFO(temp_data->m_mode))
-                        mx_printchar('|');
-                    else if (MX_ISEXEC(temp_data->m_mode))
-                        mx_printchar('*');
-                }
+            if (mx_strlen(temp_data->f_name) > 0) {
+                mx_print_filename(temp_data, flags);
                 mx_printchar('\n');
             }
             temp_file = temp_file->next;
