@@ -16,6 +16,8 @@ static void mx_print_filename (t_file *file, t_flags *flags) {
     if (flags->G)
         set_color(file->m_mode);
     mx_printstr(file->f_name);
+    if (flags->G)
+        mx_printstr(ANSI_COLOR_RESET);
     if (flags->F || flags->p) {
         if (MX_ISDIR(file->m_mode))
             mx_printchar('/');
@@ -30,14 +32,17 @@ static void mx_print_filename (t_file *file, t_flags *flags) {
         else if (MX_ISEXEC(file->m_mode))
             mx_printchar('*');
     }
-    if (flags->G)
-        mx_printstr(ANSI_COLOR_RESET);
 }
 
+//FILE PRIME FUNCTION!
 void mx_output(t_list **files, t_flags *flags, char *path) {
     if (TEST) printf(">mx_output\n");
     t_list *current_file = *files;
+    struct winsize w;
     
+    ioctl(0, TIOCGWINSZ, &w);
+    //printf ("lines %d\n", w.ws_row);
+    //printf ("columns %d\n", w.ws_col);
     if (!flags->first) {
         mx_printchar('\n');
         mx_printstr(path);
@@ -49,7 +54,7 @@ void mx_output(t_list **files, t_flags *flags, char *path) {
         t_list *temp_file = *(current_data->subdir);
 
         static int i = 0;
-        if (TEST) printf("%d %s\n", i++, current_data->f_name);
+        if (TEST) printf(">%d %s\n", i++, current_data->f_name);
 
         while (temp_file) {
             t_file *temp_data = temp_file->data;

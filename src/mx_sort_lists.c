@@ -4,6 +4,7 @@ static bool alpha_sort (void *data1, void *data2, t_flags *flags) {
     if (TEST) printf(">alpha_sort\n");
     t_file *d1 = (t_file*) data1;
     t_file *d2 = (t_file*) data2;
+
     if (d1 && d2 && d1->f_name && d2->f_name) {
         if (!flags->r) {
             if (mx_strcmp(d1->f_name, d2->f_name) > 0)
@@ -18,26 +19,27 @@ static bool alpha_sort (void *data1, void *data2, t_flags *flags) {
 }
 
 static t_list *sort_list(t_list *files,
-                      t_flags *flags, 
+                      t_flags *flags,
                       bool (*cmp)(void *, void*, t_flags *flags)) {
     if (TEST) printf(">sort_list\n");
     t_list *iter = files;
 
     while (iter) {
+        printf("!\n");
         t_file *temp = iter->data;
         t_list *i = *(temp->subdir);
         t_list *j = NULL;
 
         if (!files && !cmp)
-        return NULL;
+            return NULL;
         while (i) {
             j = i->next;
             while (j) {
+                if(!i->data)
+                    if (TEST) printf("n>o i data\n");
+                if(!j->data)
+                    if (TEST) printf(">no j data\n");
                 if (cmp(i->data, j->data, flags)) {
-                    if(!i->data)
-                        if (TEST) printf("n>o i data\n");
-                    if(!j->data)
-                        if (TEST) printf(">no j data\n");
                     void *tmp = i->data;
                     
                     i->data = j->data;
@@ -49,25 +51,11 @@ static t_list *sort_list(t_list *files,
         }
         iter = iter->next;
     }
-/*    for (t_list *i = files; i->next; i = i->next) {
-        for (t_list *j = i->next; j; j = j->next) {
-            if (!i && !j)
-                break;
-            if (cmp(i->data, j->data, flags)) {
-                void *tmp = i->data;
-                
-                i->data = j->data;
-                j->data = tmp;
-            }
-        }
-    }
-    */
     if (TEST) printf(">Sorting done!\n");
     return files;
 }
 
 void mx_sort_lists (t_list **files, t_flags *flags) {
     if (TEST) printf(">mx_sort_lists\n");
-    if (*files)
         *files = sort_list(*files, flags, alpha_sort);
 }

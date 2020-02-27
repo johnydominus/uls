@@ -1,5 +1,6 @@
 #include "libmx.h"
 #include <dirent.h>
+#include <errno.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/xattr.h>
@@ -28,7 +29,7 @@
 #define MX_ISREG(m) (((m) & S_IFMT) == S_IFREG)     //regular fil
 #define MX_ISLNK(m) (((m) & S_IFMT) == S_IFLNK)     //symbolic link
 #define MX_ISSOCK(m) (((m) & S_IFMT) == S_IFSOCK)   //socket
-#define MX_ISEXEC(m) (m & S_IXUSR)                  //executable
+#define MX_ISEXEC(m) (MX_ISREG(m) && m & S_IXUSR)   //executable
 
 typedef struct s_flags {
     bool dog;
