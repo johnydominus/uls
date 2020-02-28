@@ -68,6 +68,7 @@ typedef struct s_flags {
     bool W;
     bool w;
     bool x;
+    bool first;
 } t_flags;
 
 typedef struct dirent t_dirent;
