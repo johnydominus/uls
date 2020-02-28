@@ -6,20 +6,16 @@ int main (int argc, char **argv) {
     int margc;
     int i = 1;
 
-    (void)argc;
     mx_flag_parser(&i, argc, argv, flags);
     args = mx_save_args(&i, &margc, argc, argv);
     mx_bubble_sort(args, margc);
-    //
-    struct winsize w;
-    
-    ioctl(0, TIOCGWINSZ, &w);
+    // struct winsize w;
+    // ioctl(0, TIOCGWINSZ, &w);
     //printf ("lines %d\n", w.ws_row);
     //printf ("columns %d\n", w.ws_col);
     mx_process_arg(args, flags);
     free(flags);
-    int j = 0;
-    while (args[j])
-        free(args[j++]);
+    for (int j = 0; args[j]; j++)
+        free(args[j]);
     free(args);
 }

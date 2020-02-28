@@ -9,7 +9,7 @@ void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags) {
             int len = mx_strlen(argv[*i]);
 
             for (int j = 1; j < len; ++j) {
-                mx_check_flags (argv[*i][j], flags);
+                mx_check_flags(argv[*i][j], flags);
                 if (argv[*i][j] == 'x') {
                     flags->x = true;
                     flags->one = false;
