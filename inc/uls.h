@@ -90,7 +90,7 @@ typedef enum e_error {
     ILLEGAL_FLAG
 } t_error;
 
-void mx_print_list(t_list *files);
+void mx_process_list(t_print arguments, t_list *files, t_flags *flags);
 // char **mx_save_args (int *i, int *margc, int argc, char **argv);
 // bool mx_check_flag_validity (char c);
 // t_flags *mx_init_flags(void);

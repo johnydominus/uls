@@ -4,6 +4,7 @@ INCLIB = ./libmx/inc/
 HEADTMP = ./uls.h ./libmx.h
 
 SRC = ./main.c \
+	  ./mx_process_list.c \
 	  ./mx_check_flag_validity.c \
 	  ./mx_error.c \
 	  ./mx_flag_parser.c \
