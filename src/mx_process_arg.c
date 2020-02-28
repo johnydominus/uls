@@ -1,35 +1,29 @@
 #include "uls.h"
 
-static void free_lists(t_list **stats, t_list **entries) {
-    t_list *temp_stat = *stats;
-    t_list *temp_entry = *entries;
+static void free_list(t_list **files) {
+    t_list *temp_files = *files;
+    while (temp_files) {
+        t_list *temp = temp_files;
 
-    while (temp_entry) {
-        t_list *temp = temp_stat;
-
-        temp_stat = temp_stat->next;
-        free(temp);
-        temp = temp_entry;
-        temp_entry = temp_entry->next;
+        temp_files = temp_files->next;
         free(temp);
     }
-    free(stats);
-    free(entries);
 }
+
 
 //FILE PRIME FUNCTION!
 void mx_process_arg(char **args, t_flags *flags) {
-    t_list **stats = (t_list**)malloc(sizeof(t_list*));
-    t_list **entries = (t_list**)malloc(sizeof(t_list*));
-    char **temp_args = args;
-    int i = 0;
+    t_list *files = NULL;
+    DIR *m_dir = NULL;
+    char **temp_args = args; // Why don't use args?
 
-    *stats = NULL;
-    *entries = NULL;
-    while (temp_args[i])
-        mx_save_info(temp_args[i++], flags, stats, entries);
-    if (!flags->f)
-        mx_sort_lists(flags, stats, entries);
-    mx_output(flags, stats, entries, args);
-    free_lists(stats, entries);
+    for (int i = 0; temp_args[i]; i++)
+        mx_process_dir(temp_args[i], &files, flags, &m_dir);
+
+    // mx_print_list(files);
+    // if (!flags->f)
+        // mx_sort_lists(flags, stats, entries);
+    mx_output(flags, files, args);
+    free_list(&files);
+    closedir(m_dir);
 }
