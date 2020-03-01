@@ -12,7 +12,7 @@ void mx_error(t_error error_type, char *argument) {
         case ILLEGAL_FLAG:
             char *erchar = mx_strndup(argument, 1);
             mx_printerr("illegal option, -- ");
-            mx_printerr(*argument);
+            mx_printerr(argument);
             mx_printerr("\n");
             mx_printerr("usage: ./uls [-l] [file ...]\n");
             free(erchar);
