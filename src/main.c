@@ -9,14 +9,16 @@ int main (int argc, char **argv) {
     mx_flag_parser(&i, argc, argv, flags);
     
     i = 1;
+    flags->R = true;
     files_args = mx_file_args_to_list(&i, &dirs_args, argc, argv);
-    if (files_args != NULL)
-        mx_process_list(ALL, files, flags);
-    mx_free_list(&files_args);
-    if (dirs_args != NULL)
-        mx_process_list(DIREC, dirs, flags);
-    mx_free_list(&dirs_args);
-    free(flags);
+    if (files_args != NULL) {
+        mx_process_list(ALL, files_args, flags);
+        mx_free_list(&files_args);
+    }
+    if (dirs_args != NULL) {
+        mx_process_list(DIREC, dirs_args, flags);
+        mx_free_list(&dirs_args);
+    }
     // struct winsize w;
     // ioctl(0, TIOCGWINSZ, &w);
     //printf ("lines %d\n", w.ws_row);
