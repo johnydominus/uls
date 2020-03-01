@@ -10,11 +10,12 @@ void mx_error(t_error error_type, char *argument) {
             mx_printerr(": No such file or directory\n");
             break;
         case ILLEGAL_FLAG:
+            char *erchar = mx_strndup(argument, 1);
             mx_printerr("illegal option, -- ");
-            mx_printerr(argument);
+            mx_printerr(*argument);
             mx_printerr("\n");
             mx_printerr("usage: ./uls [-l] [file ...]\n");
-            exit(1);
+            free(erchar);
             break;
         default:
             break;

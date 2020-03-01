@@ -1,27 +1,25 @@
 #include "uls.h"
 
-
-
-//FILE PRIME FUNCTION!
 void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags) {
     for (; *i < argc; ++(*i)) {
         if (argv[*i][0] == '-' && argv[*i][1]) {
             int len = mx_strlen(argv[*i]);
 
             for (int j = 1; j < len; ++j) {
+                if (mx_check_flag_validity(argv[*i][j]) == false) {
+                    free(flags);
+                    exit(1);
+                }
                 mx_check_flags(argv[*i][j], flags);
                 if (argv[*i][j] == 'x') {
                     flags->x = true;
                     flags->one = false;
                     flags->C = false;
                 }
-                mx_check_flag_validity(argv[*i][j]);
             }
         }
-        else {
-            --(*i);
+        else
             break;
-        }
     }
 }
 
@@ -41,7 +39,7 @@ void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags) {
 // A
 
 //DONE:
-// A a p
+// G F p
 
 //IN PROGRESS:
-// F R C 1 x r l
+// A a C 1 x r l

@@ -6,8 +6,10 @@ bool mx_check_flag_validity (char c) {
     bool legal = false;
 
     for (int i = 0; i < len; ++i) {
-        if (c == flags_list[i])
+        if (c == flags_list[i]) {
             legal = true;
+            break;
+        }
     }
     free(flags_list);
     if (!legal)

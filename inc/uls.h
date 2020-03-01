@@ -12,13 +12,13 @@
 #include <time.h>
 #include <string.h>
 
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_GREEN   "\x1b[32m"
-#define ANSI_COLOR_YELLOW  "\x1b[33m"
-#define ANSI_COLOR_BLUE    "\x1b[34m"
-#define ANSI_COLOR_MAGENTA "\x1b[35m"
-#define ANSI_COLOR_CYAN    "\x1b[36m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
+#define MX_RED     "\x1b[31m"
+#define MX_GREEN   "\x1b[32m"
+#define MX_YELLOW  "\x1b[33m"
+#define MX_BLUE    "\x1b[34m"
+#define MX_MAGENTA "\x1b[35m"
+#define MX_CYAN    "\x1b[36m"
+#define MX_RESET   "\x1b[0m"
 
 #define MX_ISBLK(m) (((m) & S_IFMT) == S_IFBLK)     //block special
 #define MX_ISCHR(m) (((m) & S_IFMT) == S_IFCHR)     //char special
@@ -83,8 +83,8 @@ typedef struct s_file {
 } t_file;
 
 typedef enum e_print {
-    ALL;
-    DIREC;
+    ALL,
+    DIREC
 } t_print;
 
 typedef enum e_error {
@@ -117,3 +117,4 @@ void mx_save_info(char *arg,
                            // t_list **entries,
                            // t_flags *flags);
 void mx_process_dir(char *arg, t_list **files, t_flags *flags, DIR **m_dir);
+void mx_process_list(t_print arguments, t_list *files, t_flags *flags);
