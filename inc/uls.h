@@ -10,6 +10,7 @@
 #include <grp.h>
 #include <uuid/uuid.h>
 #include <time.h>
+#include <string.h>
 
 typedef struct s_flags {
     bool dog;
@@ -57,7 +58,7 @@ typedef struct dirent t_dirent;
 typedef struct stat t_stat;
 
 typedef struct s_file {
-    t_stat *stat;
+    t_stat stat;
     t_dirent *dirent;
     char *full_path;
     char *error;
@@ -97,6 +98,12 @@ typedef enum e_error {
     NO_FILE,
     ILLEGAL_FLAG
 } t_error;
+
+void args_to_list(int argc, char **argv,
+t_list **files_args, t_list **dir_flags);
+
+t_list *mx_file_args_to_list (int *i, t_list **dir_args, int argc, char **argv);
+t_file *mx_create_t_file();
 
 void mx_print_list(t_list *files);
 char **mx_save_args (int *i, int *margc, int argc, char **argv);

@@ -3,7 +3,7 @@
 static void dog_to_l_init(t_flags *flags) {
     flags->dog = false;
     flags->one = false;
-    flags->A = true;
+    flags->A = false;
     flags->a = false;
     flags->B = false;
     flags->b = false;

@@ -42,7 +42,7 @@ void mx_process_dir(char *arg, t_list **files, t_flags *flags, DIR **m_dir) {
                     continue;
             }
             file_name = rec_arg(arg, file->dirent);
-            lstat(file_name, file->stat);
+            lstat(file_name, &file->stat);
             // mx_fill_t_file(file, read_result, stat_result);
             mx_push_front(files, file);
             if (file->dirent->d_type == DT_DIR && flags->R) {
