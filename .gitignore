@@ -1,4 +1,9 @@
 tags
+uls.dSYM
+DS_Store
+.vscode
+*.swp
+*.swo
 *.o
 *.a
 *.gch

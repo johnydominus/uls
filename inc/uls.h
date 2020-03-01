@@ -12,6 +12,23 @@
 #include <time.h>
 #include <string.h>
 
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
+#define MX_ISBLK(m) (((m) & S_IFMT) == S_IFBLK)     //block special
+#define MX_ISCHR(m) (((m) & S_IFMT) == S_IFCHR)     //char special
+#define MX_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)     //directory
+#define MX_ISFIFO(m) (((m) & S_IFMT) == S_IFIFO)    //fifo or socket
+#define MX_ISREG(m) (((m) & S_IFMT) == S_IFREG)     //regular fil
+#define MX_ISLNK(m) (((m) & S_IFMT) == S_IFLNK)     //symbolic link
+#define MX_ISSOCK(m) (((m) & S_IFMT) == S_IFSOCK)   //socket
+#define MX_ISEXEC(m) (MX_ISREG(m) && m & S_IXUSR)   //executable
+
 typedef struct s_flags {
     bool dog;
     bool one;
@@ -52,6 +69,7 @@ typedef struct s_flags {
     bool W;
     bool w;
     bool x;
+    bool first;
 } t_flags;
 
 typedef struct dirent t_dirent;
@@ -64,35 +82,10 @@ typedef struct s_file {
     char *error;
 } t_file;
 
-typedef struct s_core {
-    dev_t m_dev;           //device
-    ino_t m_ino;           //inode
-    mode_t m_mode;         //access mode
-    nlink_t m_nlink;       //hard link ammount
-    uid_t m_uid;           //user-owner id
-    gid_t m_gid;           //group-owner id
-    dev_t m_rdev;          //device type
-    off_t m_size;          //general size in bytes
-    blksize_t m_blksize;   //input-output block size in file system
-    blkcnt_t m_blocks;     //ammount of allocated blocks
-    time_t m_atime;        //last access time
-    time_t m_mtime;        //last modification time
-    time_t m_ctime;        //last change time
-    ino_t d_fileno;         //file serial number
-    unsigned char d_namlen; //name length
-    unsigned char d_type;   //filetype
-    char d_name[];          //null-terminated file name
-} t_core;
-
-typedef enum e_filetype {
-    R_FILE,
-    DIRECTORY,
-    EXECUTABLE,
-    SYMB_LINK,
-    SOCKET,
-    WHITEOUT,
-    FIFO
-} t_filetype;
+typedef enum e_print {
+    ALL;
+    DIREC;
+} t_print;
 
 typedef enum e_error {
     NO_FILE,
