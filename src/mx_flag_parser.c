@@ -11,11 +11,6 @@ void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags) {
                     exit(1);
                 }
                 mx_check_flags(argv[*i][j], flags);
-                if (argv[*i][j] == 'x') {
-                    flags->x = true;
-                    flags->one = false;
-                    flags->C = false;
-                }
             }
         }
         else
@@ -31,6 +26,8 @@ void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags) {
 // c u
 // B b w q
 // H L P
+
+
 
 //TERMINAL DEFAULT
 // C q

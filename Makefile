@@ -12,9 +12,12 @@ SRC = main.c \
 	  mx_output.c \
 	  mx_save_args.c \
 	  mx_process_dir.c \
-	  mx_sort_lists.c \
+	  mx_sort_files.c \
 	  mx_check_flags.c \
-	  free_functions.c
+	  free_functions.c \
+	  mx_comparators_one.c \
+	  mx_comparators_two.c \
+	  mx_sort_lists.c
 
 SRCS = $(addprefix src/, $(SRC))
 
@@ -30,7 +33,7 @@ CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -Wno-unused-func
 all: install clean
 
 install:
-	# @make -C libmx install
+	@make -C libmx install
 	@clang $(CFLGS) -I $(INC) -I $(INCLIB) -c $(SRCS)
 	@mkdir -p obj
 	@mv $(OBJ) ./obj

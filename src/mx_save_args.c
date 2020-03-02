@@ -28,7 +28,7 @@ t_list *mx_file_args_to_list (int *i, t_list **dir_args, int argc, char **argv) 
     t_list *errors = NULL;
     t_file *file = mx_create_t_file();
 
-    if (argc == 1) {
+    if (argc == *i) {
         mx_strcpy(file->d_name, ".");
         mx_push_front(dir_args, file);
         return NULL;

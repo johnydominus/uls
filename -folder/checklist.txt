@@ -3,7 +3,7 @@ FLAGS TODO:
 	-a -A   C   	with and without '.' and '..'       
 		-aR -AR
 	-G	C?	enable colorized output
-	                                                                                                                   	-1      !   	output per line                                                                                                                                                                                                                                                                                                                                                                     	-C      !      	multi-column output (default to a terminal)
+	-1      !   	output per line                                                                                                                                                                                                                                                                                                                                                                     	-C      !      	multi-column output (default to a terminal)
 	-x	!	the same as -C, except that the output sorted across (by lines)
 	-lh	!	uses sufixes for bytes, kilobytes, etc
 	-m	!	list files across the pages, separated by comas

@@ -32,6 +32,7 @@ static void checkflag_two (char c, t_flags *flags) {
     else if (c == 'c') {
         flags->c = true;
         flags->u = false;
+        flags->U = false;
     }
     else if (c == 'd') flags->d = true;
     else if (c == 'e') flags->e = true;
@@ -43,7 +44,6 @@ static void checkflag_two (char c, t_flags *flags) {
     else if (c == 'h') flags->h = true;
     else if (c == 'i') flags->i = true;
     else if (c == 'k') flags->k = true;
-    else if (c == 'l') flags->l = true;
 }
 
 static void checkflag_three (char c, t_flags *flags) {
@@ -79,16 +79,16 @@ static void checkflag_four (char c, t_flags *flags) {
     else if (c == 'u') {
         flags->u = true;
         flags->c = false;
+        flags->U = false;
     }
-    else if (c == 'U') flags->U = true;
+    else if (c == 'U') {
+        flags->U = true;
+        flags->c = false;
+        flags->u = false;
+    }
     else if (c == 'v') flags->v = true;
     else if (c == 'W') flags->W = true;
-    else if (c == 'w') {
-        flags->w = true;
-        flags->B = false;
-        flags->b = false;
-        flags->q = false;
-    }
+    else if (c == 'l') flags->l = true;
 }
 
 //FILE PRIME FUNCTION
@@ -97,4 +97,15 @@ void mx_check_flags (char c, t_flags *flags) {
     checkflag_two (c, flags);
     checkflag_three (c, flags);
     checkflag_four (c, flags);
+    if (c == 'x') {
+        flags->x = true;
+        flags->one = false;
+        flags->C = false;
+    }
+    else if (c == 'w') {
+        flags->w = true;
+        flags->B = false;
+        flags->b = false;
+        flags->q = false;
+    }
 }
