@@ -6,8 +6,7 @@ int main (int argc, char **argv) {
     t_list *dirs_args = NULL;
     int i = 1;
 
-    mx_flag_parser(&i, argc, argv, flags);
-    
+    mx_flag_parser(&i, argc, argv, flags);    
     i = 1;
     flags->R = true;
     files_args = mx_file_args_to_list(&i, &dirs_args, argc, argv);
@@ -21,7 +20,6 @@ int main (int argc, char **argv) {
     }
     // struct winsize w;
     // ioctl(0, TIOCGWINSZ, &w);
-    //printf ("lines %d\n", w.ws_row);
-    //printf ("columns %d\n", w.ws_col);
-    free(flags);
+    // printf ("lines %d\n", w.ws_row);
+    // printf ("columns %d\n", w.ws_col);
 }
