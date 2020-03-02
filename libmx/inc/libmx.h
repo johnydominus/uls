@@ -87,5 +87,6 @@ char **mx_strsplit(const char *s, char c);
 char *mx_strtrim_delim (const char *str, const char delim);
 bool mx_isdigit(int c);
 bool mx_isalpha(int c);
+void mx_merge_sort(t_list **head_ptr, bool (*cmp)(void *a, void *b));
 
 #endif
