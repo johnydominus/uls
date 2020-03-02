@@ -77,7 +77,7 @@ typedef struct stat t_stat;
 
 typedef struct s_file {
     t_stat stat;
-    t_dirent *dirent;
+    char d_name[1024];
     char *full_path;
     char *error;
 } t_file;
@@ -94,6 +94,10 @@ typedef enum e_error {
 
 void args_to_list(int argc, char **argv,
 t_list **files_args, t_list **dir_flags);
+void mx_process_list(t_print arguments, t_list *files, t_flags *flags);
+void mx_free_list(t_list **files);
+void mx_output(t_flags *flags, t_list *files);
+t_list *mx_process_dir(t_file *dir, t_flags *flags);
 
 t_list *mx_file_args_to_list (int *i, t_list **dir_args, int argc, char **argv);
 t_file *mx_create_t_file();
@@ -107,14 +111,7 @@ void mx_error(t_error error_type, char *argument);
 void mx_process_arg(char **args, t_flags *flags);
 void mx_sort_lists (t_flags *flags, t_list **stats, t_list **entries);
 void mx_check_flags (char c, t_flags *flags);
-void mx_output(t_flags *flags, t_list *files, char **args);
 void mx_save_info(char *arg,
                    t_flags *flags,
                    t_list **stats,
                    t_list **entries);
-// void mx_process_dir(char *arg,
-                           // t_list **stats,
-                           // t_list **entries,
-                           // t_flags *flags);
-void mx_process_dir(char *arg, t_list **files, t_flags *flags, DIR **m_dir);
-void mx_process_list(t_print arguments, t_list *files, t_flags *flags);

@@ -3,18 +3,18 @@ INC = ./inc/
 INCLIB = ./libmx/inc/
 HEADTMP = ./uls.h ./libmx.h
 
-SRC = ./main.c \
-	  ./mx_process_list.c \
-	  ./mx_check_flag_validity.c \
-	  ./mx_error.c \
-	  ./mx_flag_parser.c \
-	  ./mx_init_flags.c \
-	  ./mx_output.c \
-	  ./mx_process_arg.c \
-	  ./mx_save_args.c \
-	  ./mx_process_dir.c \
-	  ./mx_sort_lists.c \
-	  ./mx_check_flags.c
+SRC = main.c \
+	  mx_process_list.c \
+	  mx_check_flag_validity.c \
+	  mx_error.c \
+	  mx_flag_parser.c \
+	  mx_init_flags.c \
+	  mx_output.c \
+	  mx_save_args.c \
+	  mx_process_dir.c \
+	  mx_sort_lists.c \
+	  mx_check_flags.c \
+	  free_functions.c
 
 SRCS = $(addprefix src/, $(SRC))
 
@@ -25,6 +25,7 @@ OBJO = $(addprefix obj/, $(OBJ))
 # CFLGS = -std=c11 -Wall -Wpedantic -Werror -Wextra -g -fsanitize=address
 # CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address # Warnig does not error 
 CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning;
+# CFLGS = -std=c11 -Wall -Wpedantic -Wextra -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning; To use leaks command;
 
 all: install clean
 
