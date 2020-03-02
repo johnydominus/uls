@@ -1,14 +1,14 @@
 #include "uls.h"
 
-void mx_print_list(t_list *files) {
+void mx_print_name_list(t_list *files) {
     for (t_list *cur = files; cur; cur = cur->next) {
         t_file *temp = (t_file*)cur->data; 
-            mx_printstr(temp->dirent->d_name);
-            mx_printchar('\n');
+            mx_printstr(temp->d_name);
+            mx_printstr("\n");
     }
 }
 
-void mx_output(t_flags *flags, t_list *files, char **args) {
+void mx_output(t_flags *flags, t_list *files) {
     // static bool first = true;
 
     // if (!first) {
@@ -18,9 +18,7 @@ void mx_output(t_flags *flags, t_list *files, char **args) {
             // mx_printstr(":\n");
         // }
     // }
-    if (flags->l == true)
-        printf("\n\nsuccess\n\n");
-    mx_print_list(files);
+    mx_print_name_list(files);
     // first = false;
     // for (t_list *cur = files; cur; cur = cur->next) {
         // t_file *temp = (t_file*)cur->data; 
