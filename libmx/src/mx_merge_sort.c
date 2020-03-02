@@ -35,15 +35,15 @@ static void divide(t_list *head, t_list **a, t_list **b) {
     slow->next = NULL;
 }
 
-void mx_merge_sort(t_list **head_ptr, bool (*cmp)(void *a, void *b)) {
+void mx_list_merge_sort(t_list **head_ptr, bool (*cmp)(void *a, void *b)) {
     t_list *head = *head_ptr;
     t_list *a = NULL;
     t_list *b = NULL;
 
     if (head == NULL || head->next == NULL)
-        return ;
+        return;
     divide(head, &a, &b);
-    mx_merge_sort(&a, cmp);
-    mx_merge_sort(&b, cmp);
+    mx_list_merge_sort(&a, cmp);
+    mx_list_merge_sort(&b, cmp);
     *head_ptr = merge(a, b, cmp);
 }

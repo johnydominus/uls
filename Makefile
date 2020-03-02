@@ -17,7 +17,7 @@ SRC = main.c \
 	  free_functions.c \
 	  mx_comparators_one.c \
 	  mx_comparators_two.c \
-	  mx_comparators_three.c
+	  mx_sort_lists.c
 
 SRCS = $(addprefix src/, $(SRC))
 

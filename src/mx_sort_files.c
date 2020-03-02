@@ -1,37 +1,25 @@
 #include "uls.h"
 
-static void time_n_alpha_sort(t_list *files, t_flags *flags) {
-    if (flags->t && flags->c && flags->r)
-        mx_merge_sort(&files, mx_time_chngd_cmp_rev);
-    else if (flags->t && flags->c)
-        mx_merge_sort(&files, mx_time_chngd_cmp);
-    else if (flags->t && flags->u && flags->r)
-        mx_merge_sort(&files, mx_time_access_cmp_rev);
-    else if (flags->t && flags->u)
-        mx_merge_sort(&files, mx_time_access_cmp);
-    else if (flags->t && flags->U && flags->r)
-        mx_merge_sort(&files, mx_time_creat_cmp_rev);
-    else if (flags->t && flags->U)
-        mx_merge_sort(&files, mx_time_creat_cmp);
-    else if (flags->t && flags->r)
-        mx_merge_sort(&files, mx_time_mod_cmp_rev);
-    else if (flags->t)
-        mx_merge_sort(&files, mx_time_mod_cmp);
-    else if (flags->r)
-        mx_merge_sort(&files, mx_alpha_cmp_rev);
-    else
-        mx_merge_sort(&files, mx_alpha_cmp);
+static void time_sort(t_list *files, t_flags *flags) {
+
 }
 
 void mx_sort_files(t_list *files, t_flags *flags) {
     if (flags->f) {}
     else {
-        if (flags->S && flags->r)
-            mx_merge_sort(&files, mx_size_cmp_rev);
-        else if (flags->S)
-            mx_merge_sort(&files, mx_size_cmp);
+        mx_sort_lists(files, mx_alpha_cmp, flags);
+        if (flags->S)
+            mx_sort_lists(files, mx_size_cmp, flags);
+        else if (flags->t && flags->c)
+            mx_sort_lists(files, mx_time_chngd_cmp, flags);
+        else if (flags->t && flags->u)
+            mx_sort_lists(files, mx_time_access_cmp, flags);
+        else if (flags->t && flags->U)
+            mx_sort_lists(files, mx_time_creat_cmp, flags);
+        else if (flags->t)
+            mx_sort_lists(files, mx_time_mod_cmp, flags);
         else
-            time_n_alpha_sort(files, flags);
+            mx_sort_lists(files, mx_alpha_cmp, flags);
     }
 }
 

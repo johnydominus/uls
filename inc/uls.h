@@ -110,18 +110,16 @@ void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags);
 void mx_error(t_error error_type, char *argument);
 void mx_process_arg(char **args, t_flags *flags);
 void mx_sort_files(t_list *files, t_flags *flags);
+t_list *mx_sort_lists(t_list *lst, 
+                      bool (*cmp)(void *, void*, 
+                      bool reverse),
+                      t_flags *flags);
 void mx_check_flags (char c, t_flags *flags);
 
 //Sorting comparators:
-bool mx_size_cmp_rev(void *data1, void *data2);
-bool mx_size_cmp(void *data1, void *data2);
-bool mx_time_chngd_cmp_rev(void *data1, void *data2);
-bool mx_time_chngd_cmp(void *data1, void *data2);
-bool mx_time_access_cmp_rev(void *data1, void *data2);
-bool mx_time_access_cmp(void *data1, void *data2);
-bool mx_time_creat_cmp_rev(void *data1, void *data2);
-bool mx_time_creat_cmp(void *data1, void *data2);
-bool mx_time_mod_cmp_rev(void *data1, void *data2);
-bool mx_time_mod_cmp(void *data1, void *data2);
-bool mx_alpha_cmp_rev(void *data1, void *data2);
-bool mx_alpha_cmp(void *data1, void *data2);
+bool mx_size_cmp(void *data1, void *data2, bool reverse);
+bool mx_time_chngd_cmp(void *data1, void *data2, bool reverse);
+bool mx_time_access_cmp(void *data1, void *data2, bool reverse);
+bool mx_time_creat_cmp(void *data1, void *data2, bool reverse);
+bool mx_time_mod_cmp(void *data1, void *data2, bool reverse);
+bool mx_alpha_cmp(void *data1, void *data2, bool reverse);
