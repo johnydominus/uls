@@ -22,8 +22,8 @@ void mx_process_list(t_print arguments, t_list *files, t_flags *flags) {
 // If we do not have argumetns then in t_file we have only d_name = "." 
                 t_list *subdir = mx_process_dir(data, flags);
                 // mx_sort_list(subdir, flags);
-                mx_process_list(ALL, subdir, flags);
                 print_path(data->full_path, flags); // It does not work now
+                mx_process_list(ALL, subdir, flags);
                 if (flags->R)
                     mx_process_list(DIREC, subdir, flags);
             }
