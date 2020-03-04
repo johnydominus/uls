@@ -1,7 +1,7 @@
 #include "uls.h"
 
 static void checkflag_one (char c, t_flags *flags) {
-    else if (c == '1') {
+    if (c == '1') {
         flags->one = true;
         flags->C = false;
         flags->x = false;

@@ -11,10 +11,8 @@ void mx_print_name_list(t_list *files, t_flags* flags) {
 void mx_output(t_flags *flags, t_list *files) {
     if (flags->one)
         mx_print_name_list(files, flags);
-    else if (flags->C)
+    else if (flags->C || flags->x)
         mx_multicol_output(files, flags);
-    else if (flags->x)
-        mx_multicross_output(files, flags);
-    else if (flags->l)
-        mx_long_output(files, flags);
+    // else if (flags->l)
+    //     mx_long_output(files, flags);
 }

@@ -11,7 +11,7 @@ static void set_color(mode_t mode) {
         mx_printstr(MX_BLUE);
 }
 
-static void mx_print_filename (t_file *file, t_flags *flags) {
+void mx_print_filename (t_file *file, t_flags *flags) {
     if (flags->G)
         set_color(file->stat.st_mode);
     mx_printstr(file->d_name);
