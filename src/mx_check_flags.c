@@ -1,11 +1,11 @@
 #include "uls.h"
 
 static void checkflag_one (char c, t_flags *flags) {
-    if(c == '@') flags->dog = true;
     else if (c == '1') {
         flags->one = true;
         flags->C = false;
         flags->x = false;
+        flags->l = false;
     }
     else if (c == 'A') flags->A = true;
     else if (c == 'a') flags->a = true;
@@ -28,13 +28,13 @@ static void checkflag_two (char c, t_flags *flags) {
         flags->C = true;
         flags->one = false;
         flags->x = false;
+        flags->l = false;
     }
     else if (c == 'c') {
         flags->c = true;
         flags->u = false;
         flags->U = false;
     }
-    else if (c == 'd') flags->d = true;
     else if (c == 'e') flags->e = true;
     else if (c == 'F') flags->F = true;
     else if (c == 'f') flags->f = true;
@@ -88,7 +88,8 @@ static void checkflag_four (char c, t_flags *flags) {
     }
     else if (c == 'v') flags->v = true;
     else if (c == 'W') flags->W = true;
-    else if (c == 'l') flags->l = true;
+    else if(c == '@') flags->dog = true;
+    else if (c == 'd') flags->d = true;
 }
 
 //FILE PRIME FUNCTION
@@ -107,5 +108,11 @@ void mx_check_flags (char c, t_flags *flags) {
         flags->B = false;
         flags->b = false;
         flags->q = false;
+    }
+    else if (c == 'l') {
+        flags->l = true;
+        flags->C = false;
+        flags->x = false;
+        flags->one = false;
     }
 }

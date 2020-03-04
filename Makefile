@@ -33,20 +33,20 @@ CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -Wno-unused-func
 all: install clean
 
 install:
-	@make -C libmx install
+#	@make -C libmx install
 	@clang $(CFLGS) -I $(INC) -I $(INCLIB) -c $(SRCS)
 	@mkdir -p obj
 	@mv $(OBJ) ./obj
 	@clang $(CFLGS) $(OBJO) libmx/libmx.a -o $(NAME)
 
 clean:
-	@make -C libmx/ -f Makefile clean
+#	@make -C libmx/ -f Makefile clean
 	@rm -rf ./obj
 	@rm -rf libmx.a
 	@rm -rf ./libmx/obj
 
 uninstall: clean
-	@make -C libmx/ -f Makefile uninstall
+#	@make -C libmx/ -f Makefile uninstall
 	@rm -rf $(NAME)
 
 reinstall: uninstall all
