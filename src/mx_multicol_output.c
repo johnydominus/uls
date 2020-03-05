@@ -1,65 +1,72 @@
 #include "uls.h"
 
-int mx_add_symb(t_file *file, t_flags *flags) {
-    if (flags->F || flags->p) {
-        if (MX_ISDIR(file->stat.st_mode))
-            return 1;
-    }
-    if (flags->F) {
-        if (MX_ISLNK(file->stat.st_mode))
-            return 1;
-        else if (MX_ISSOCK(file->stat.st_mode))
-            return 1;
-        else if (MX_ISFIFO(file->stat.st_mode))
-            return 1;
-        else if (MX_ISEXEC(file->stat.st_mode))
-            return 1;
-    }
-    return 0;
-}
-
-static t_multicol *multicol_init(t_list *files, t_flags *flags) {
-    t_multicol *multicol = (t_multicol*)malloc(sizeof(t_multicol));
-    
-    multicol->files_num = 0;
-    multicol->max = 0;
-    if (isatty(1))
-        ioctl(0, TIOCGWINSZ, &multicol->win_size);
-    else
-        multicol->win_size.ws_col = 1;
-    for (t_list *iter = files; iter != NULL; iter = iter->next) {
-        t_file *temp = iter->data;
-        int len = mx_strlen(temp->d_name);
-
-        ++multicol->files_num;
-        if (len > multicol->max)
-            multicol->max = len /*+ mx_add_symb(temp, flags)*/;
-    }
-    multicol->col_width = ((8 - (multicol->max % 8)) + multicol->max);
-    while (multicol->col_width % 8 != 0)
-        ++multicol->col_width;
-    multicol->cols = multicol->win_size.ws_col / multicol->col_width;
-    if (multicol->files_num % multicol->cols)
-        multicol->rows =  (multicol->files_num / multicol->cols) + 1;
-    else
-        multicol->rows = multicol->files_num / multicol->cols;
-    // printf("cols: %d\n", multicol->cols);
-    // printf("rows: %d\n", multicol->rows);
-    // printf("files_num: %d\n", multicol->files_num);
-    // printf("max: %d\n", multicol->max);
-    // printf("col_width: %d\n", multicol->col_width);
-    // printf("win_size rows: %d\n", multicol->win_size.ws_row);
-    // printf("win_size cols: %d\n", multicol->win_size.ws_col);
-    return multicol;
-}
-
-void mx_multicol_output(t_list *files, t_flags *flags) {
-    t_multicol *multicol = multicol_init(files, flags);
+static t_file *get_nth_file(t_list *files, int n) {
+    int i = 0;
     t_list *iter = files;
 
-    if (flags->x)
-        mx_x_output(iter, flags, multicol);
-    else
-        mx_c_output(iter, flags, multicol);
-    free (multicol);
+    while (iter) {
+        if (i == n)
+            return iter->data;
+        ++i;
+        iter = iter->next;
+    }
+    return NULL;
+}
+
+static void count_tabs(int max_len, int prev_len) {
+    int spaces_count = 0;
+    int tabs_count = 0;
+
+    if (!(max_len % 8))
+        spaces_count = max_len + 8;
+    else {
+        spaces_count = max_len;
+        while (spaces_count % 8)
+            spaces_count++;
+    }
+    tabs_count = (spaces_count - prev_len) / 8;
+    if (!(prev_len % 8))
+        tabs_count--;
+    while (tabs_count--)
+        mx_printchar('\t');
+    mx_printchar('\t');
+}
+
+void mx_c_output(t_list *files, t_flags *flags, t_multicol *mltcl) {
+    int prev_len = 0;
+    t_file *data = NULL;
+
+    for (int i = 0; i < mltcl->rows; ++i) {
+        for (int j = 0; j < mltcl->files_num; j += mltcl->rows) {
+            data = get_nth_file(files, i + j);
+            if (j != 0 && ((i + j) < mltcl->files_num))
+                count_tabs(mltcl->max, prev_len);
+            if (i + j < mltcl->files_num) {
+                mx_print_filename(data, flags);
+                prev_len = mx_strlen(data->d_name) + mx_add_symb(data, flags);
+            }
+        }
+        mx_printchar('\n');
+    }
+}
+
+void mx_x_output(t_list *files, t_flags *flags, t_multicol *mltcl) {
+    int prev_len = 0;
+    t_list *file = files;
+    t_file *data = NULL;
+
+    for (int i = 0; i < mltcl->rows; ++i) {
+        int x = i * mltcl->cols - i;
+        
+        for (int j = x; j < mltcl->cols * (i + 1); ++j) {
+            if (j != x && ((i + j) < mltcl->cols * (i + 1)))
+                count_tabs(mltcl->max, prev_len);
+            if (i + j < mltcl->cols * (i + 1) && i + j < mltcl->files_num) {
+                data = get_nth_file(files, i + j);
+                mx_print_filename(data, flags);
+                prev_len = mx_strlen(data->d_name) + mx_add_symb(data, flags);
+            }
+        }
+        mx_printchar('\n');
+    }
 }
