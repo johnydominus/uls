@@ -79,7 +79,7 @@ typedef struct s_file {
     t_stat stat;
     char d_name[1024];
     char *full_path;
-    char *error;
+    bool error;
 } t_file;
 
 typedef enum e_print {
@@ -98,9 +98,11 @@ void mx_process_list(t_print arguments, t_list *files, t_flags *flags);
 void mx_free_list(t_list **files);
 void mx_output(t_flags *flags, t_list *files);
 t_list *mx_process_dir(t_file *dir, t_flags *flags);
-
+char *mx_four_to_one(char *first_part, char *text,
+char *second_part, char *third_part);
 t_list *mx_file_args_to_list (int *i, t_list **dir_args, int argc, char **argv);
 t_file *mx_create_t_file();
+void mx_print_path(char *path, t_flags *flags);
 
 void mx_print_list(t_list *files);
 char **mx_save_args (int *i, int *margc, int argc, char **argv);

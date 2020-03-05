@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags) {
+void mx_flag_parser(int *i, int argc, char **argv, t_flags *flags) {
     for (; *i < argc; ++(*i)) {
         if (argv[*i][0] == '-' && argv[*i][1]) {
             int len = mx_strlen(argv[*i]);

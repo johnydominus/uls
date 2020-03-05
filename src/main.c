@@ -16,6 +16,8 @@ int main (int argc, char **argv) {
         mx_process_list(DIREC, dirs_args, flags);
         mx_free_list(&dirs_args);
     }
+    free(flags);
+    // system("leaks -q uls");
     // struct winsize w;
     // ioctl(0, TIOCGWINSZ, &w);
     // printf ("lines %d\n", w.ws_row);
