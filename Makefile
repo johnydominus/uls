@@ -30,26 +30,26 @@ OBJO = $(addprefix obj/, $(OBJ))
 
 # CFLGS = -std=c11 -Wall -Wpedantic -Werror -Wextra -g -fsanitize=address
 # CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address # Warnig does not error 
- CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning;
+  CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning;
 # CFLGS = -std=c11 -Wall -Wpedantic -Wextra -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning; To use leaks command;
 
 all: install clean
 
 install:
-#	@make -C libmx install
+	@make -C libmx install
 	@clang $(CFLGS) -I $(INC) -I $(INCLIB) -c $(SRCS)
 	@mkdir -p obj
 	@mv $(OBJ) ./obj
 	@clang $(CFLGS) $(OBJO) libmx/libmx.a -o $(NAME)
 
 clean:
-#	@make -C libmx/ -f Makefile clean
+	@make -C libmx/ -f Makefile clean
 	@rm -rf ./obj
 	@rm -rf libmx.a
 	@rm -rf ./libmx/obj
 
 uninstall: clean
-#	@make -C libmx/ -f Makefile uninstall
+	@make -C libmx/ -f Makefile uninstall
 	@rm -rf $(NAME)
 
 reinstall: uninstall all
