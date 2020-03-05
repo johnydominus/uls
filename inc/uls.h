@@ -83,12 +83,12 @@ typedef struct s_file {
 } t_file;
 
 typedef struct s_multicol {
+    struct winsize win_size;
     int cols;
     int rows;
     int files_num;
-    int longest_name;
+    int max;
     int col_width;
-    struct winsize win_size;
 } t_multicol;
 
 typedef enum e_print {
@@ -108,6 +108,9 @@ void mx_free_list(t_list **files);
 void mx_output(t_flags *flags, t_list *files);
 void mx_print_filename (t_file *file, t_flags *flags);
 void mx_multicol_output(t_list *files, t_flags *flags);
+void mx_x_output(t_list *files, t_flags *flags, t_multicol *mltcl);
+void mx_c_output(t_list *files, t_flags *flags, t_multicol *mltcl);
+int mx_add_symb(t_file *file, t_flags *flags);
 t_list *mx_process_dir(t_file *dir, t_flags *flags);
 
 t_list *mx_file_args_to_list (int *i, t_list **dir_args, int argc, char **argv);

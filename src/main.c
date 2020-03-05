@@ -19,5 +19,6 @@ int main (int argc, char **argv) {
     // struct winsize w;
     // ioctl(0, TIOCGWINSZ, &w);
     // printf ("lines %d\n", w.ws_row);
-    // printf ("columns %d\n", w.ws_col);
+    // printf ("columns %d\n", w.ws_col)
+    // system("leaks -q uls");
 }

@@ -1,6 +1,6 @@
 tags
 uls.dSYM
-DS_Store
+.DS_Store
 .vscode
 *.swp
 *.swo

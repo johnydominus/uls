@@ -29,7 +29,7 @@ OBJO = $(addprefix obj/, $(OBJ))
 
 # CFLGS = -std=c11 -Wall -Wpedantic -Werror -Wextra -g -fsanitize=address
 # CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address # Warnig does not error 
-CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning;
+ CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning;
 # CFLGS = -std=c11 -Wall -Wpedantic -Wextra -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning; To use leaks command;
 
 all: install clean
