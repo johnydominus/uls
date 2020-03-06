@@ -32,13 +32,13 @@ static t_multicol *multicol_subinit(t_multicol *multicol) {
 
 static t_multicol *multicol_init(t_list *files, t_flags *flags) {
     t_multicol *multicol = (t_multicol*)malloc(sizeof(t_multicol));
-    
+
     multicol->files_num = 0;
     multicol->max = 0;
     if (isatty(1))
         ioctl(0, TIOCGWINSZ, &multicol->win_size);
     else
-        multicol->win_size.ws_col = 1;
+        multicol->win_size.ws_col = 80;
     for (t_list *iter = files; iter != NULL; iter = iter->next) {
         t_file *temp = iter->data;
         int len = mx_strlen(temp->d_name);

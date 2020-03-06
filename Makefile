@@ -20,7 +20,8 @@ SRC = main.c \
 	  mx_sort_lists.c \
 	  mx_print_filename.c \
 	  mx_multicol_output.c \
-	  mx_multicol.c
+	  mx_multicol.c \
+	  mx_m_output.c
 
 SRCS = $(addprefix src/, $(SRC))
 
@@ -36,20 +37,20 @@ OBJO = $(addprefix obj/, $(OBJ))
 all: install clean
 
 install:
-	@make -C libmx install
+#	@make -C libmx install
 	@clang $(CFLGS) -I $(INC) -I $(INCLIB) -c $(SRCS)
 	@mkdir -p obj
 	@mv $(OBJ) ./obj
 	@clang $(CFLGS) $(OBJO) libmx/libmx.a -o $(NAME)
 
 clean:
-	@make -C libmx/ -f Makefile clean
+#	@make -C libmx/ -f Makefile clean
 	@rm -rf ./obj
 	@rm -rf libmx.a
 	@rm -rf ./libmx/obj
 
 uninstall: clean
-	@make -C libmx/ -f Makefile uninstall
+#	@make -C libmx/ -f Makefile uninstall
 	@rm -rf $(NAME)
 
 reinstall: uninstall all

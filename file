@@ -1,0 +1,21 @@
+.txt				-folder
+.				..
+.git				.gitignore
+.vscode				Makefile
+README.md			file
+files				how_to_know_if_print_in_file.c
+inc				libmx
+other				src
+uls				uls.dSYM
+.txt				
+:
+.txt				-folder
+.				..
+.git				.gitignore
+.vscode				Makefile
+README.md			file
+files				how_to_know_if_print_in_file.c
+inc				libmx
+other				src
+uls				uls.dSYM
+.txt				

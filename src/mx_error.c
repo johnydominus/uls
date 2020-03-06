@@ -15,7 +15,9 @@ void mx_error(t_error error_type, char *argument) {
             mx_printerr("illegal option, -- ");
             mx_printerr(argument);
             mx_printerr("\n");
-            mx_printerr("usage: ./uls [-l] [file ...]\n");
+            mx_printerr("usage: ./uls [-");
+            mx_printerr(MX_USED_FLAGS);
+            mx_printerr("] [file ...]\n");
             free(erchar);
             break;
         default:
