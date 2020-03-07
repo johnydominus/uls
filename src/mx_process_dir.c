@@ -32,10 +32,8 @@ t_list *mx_process_dir(t_file *dir, t_flags *flags) {
         m_dir = opendir(dir->d_name);
     if (m_dir != NULL) {
         while ((dirent = readdir(m_dir)) != NULL) {
-            if (flags->a == false) { //wtf?? flag -A does not work 
-                if (dirent->d_name[0] == '.')
-                    continue;
-            }
+            if (dirent->d_name[0] == '.')
+                continue;
             if (dir->full_path != NULL)
                 file->full_path = rec_arg(dir->full_path, dirent);
             else 

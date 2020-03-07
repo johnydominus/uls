@@ -14,7 +14,7 @@
 #include <time.h>
 #include <string.h>
 
-#define MX_USED_FLAGS "CFGRSUacflmnprtux1"
+#define MX_USED_FLAGS "CFRSUcflmnprtux1"
 
 #define MX_RED     "\x1b[31m"
 #define MX_GREEN   "\x1b[32m"
@@ -40,7 +40,6 @@ typedef struct {
     bool c;
     bool F;
     bool f;
-    bool G;
     bool l;
     bool m;
     bool n;

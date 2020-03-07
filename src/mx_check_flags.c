@@ -26,7 +26,7 @@ static void checkflag_one(char c, t_flags *flags) {
 static void checkflag_two(char c, t_flags *flags) {
     if (c == 'F') flags->F = true;
     else if (c == 'f') flags->f = true;
-    else if (c == 'G') flags->G = true;
+    // else if (c == 'G') flags->G = true;
     else if (c == 'm') {
         flags->m = true;
         flags->C = false;
