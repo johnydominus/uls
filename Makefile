@@ -40,7 +40,7 @@ CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -Wno-unused-function -Wno-unused-pa
 all: install
 
 install:
-	# @make -C libmx install
+	@make -C libmx install
 	@clang $(CFLGS) -I $(INC) -I $(INCLIB) -c $(SRCS)
 	@mkdir -p obj
 	@mv $(OBJ) ./obj
