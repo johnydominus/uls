@@ -3,9 +3,10 @@
 void mx_print_path(t_file *data, t_flags *flags) {
     if (flags->first == true) {
         flags->first = false;
-        return;
+        // return;
     }
-    mx_printstr("\n");
+    else 
+        mx_printstr("\n");
     if (data->full_path == NULL)
         mx_printstr(data->d_name);
     else

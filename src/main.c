@@ -11,6 +11,8 @@ int main (int argc, char **argv) {
     if (files_args != NULL) {
         mx_process_list(ALL, files_args, flags);
         mx_free_list(&files_args);
+        if (dirs_args)
+            mx_printchar('\n');
     }
     if (dirs_args != NULL) {
         mx_process_list(DIREC, dirs_args, flags);

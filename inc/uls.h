@@ -131,3 +131,4 @@ bool mx_time_access_cmp(void *data1, void *data2, bool reverse);
 bool mx_time_creat_cmp(void *data1, void *data2, bool reverse);
 bool mx_time_mod_cmp(void *data1, void *data2, bool reverse);
 bool mx_alpha_cmp(void *data1, void *data2, bool reverse);
+bool mx_errors_cmp(void *data1, void *data2);
