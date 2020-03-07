@@ -35,6 +35,15 @@ char *second_part, char *third_part) {
     free(error);
 }
 
+bool mx_if_dot(char *d_name) {
+    if (d_name[0] == '.' && d_name[1] == '.' && d_name[2] == '\0')
+        return true;
+    if (d_name[0] == '.' && d_name[1] == '\0')
+        return true;
+    else 
+        return false;
+}
+
 static void fill_list(DIR *m_dir, t_flags *flags, t_list **files, t_file *dir)
 {
     t_file *file = NULL;
@@ -42,7 +51,7 @@ static void fill_list(DIR *m_dir, t_flags *flags, t_list **files, t_file *dir)
 
     while ((dirent = readdir(m_dir)) != NULL) {
         file = mx_create_t_file();
-        if (flags->A == false) {
+        if (flags->A == false || mx_if_dot(dirent->d_name) == true) {
             if (dirent->d_name[0] == '.') {
                 free(file);
                 continue;
