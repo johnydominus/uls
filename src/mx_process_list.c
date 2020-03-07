@@ -21,7 +21,7 @@ void mx_process_list(t_print arguments, t_list *files, t_flags *flags) {
     else if (arguments == DIREC) {
         for (t_list *iter = files; iter; iter = iter->next) {
             if (MX_ISDIR(((t_file*)iter->data)->stat.st_mode) ||
-                mx_strcmp(((t_file*)iter->data)->d_name, ".") == 0) { 
+                mx_strcmp(((t_file*)iter->data)->d_name, ".") == 0) {
                 subdir = mx_process_dir((t_file*)iter->data, flags);
                 if(((t_file*)iter->data)->error == true)
                     continue;
@@ -29,9 +29,9 @@ void mx_process_list(t_print arguments, t_list *files, t_flags *flags) {
                 mx_process_list(ALL, subdir, flags);
                 if (flags->R)
                     mx_process_list(DIREC, subdir, flags);
+                if (subdir != NULL)
+                    mx_free_list(&subdir);
             }
         }
     }
-    if (subdir != NULL)
-        mx_free_list(&subdir);
 }
