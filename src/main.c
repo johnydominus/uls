@@ -16,5 +16,5 @@ int main (int argc, char **argv) {
         mx_process_list(DIREC, dirs_args, flags);
         mx_free_list(&dirs_args);
     }
-    system("leaks -q uls");
+    // system("leaks -q uls");
 }
