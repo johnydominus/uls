@@ -74,5 +74,5 @@ void mx_check_flags(char c, t_flags *flags) {
     checkflag_one(c, flags);
     checkflag_two(c, flags);
     checkflag_three(c, flags);
-    if (c == 'a') flags->a = true;
+    if (c == 'A') flags->A = true;
 }

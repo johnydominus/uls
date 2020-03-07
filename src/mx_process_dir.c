@@ -42,7 +42,7 @@ static void fill_list(DIR *m_dir, t_flags *flags, t_list **files, t_file *dir)
 
     while ((dirent = readdir(m_dir)) != NULL) {
         file = mx_create_t_file();
-        if (flags->a == false) { //wtf?? flag -A does not work 
+        if (flags->A == false) {
             if (dirent->d_name[0] == '.') {
                 free(file);
                 continue;

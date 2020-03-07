@@ -2,6 +2,7 @@
 
 static void init(t_flags *flags) {
     flags->one = false;
+    flags->A = false;
     flags->C = true;
     flags->c = false;
     flags->F = false;
