@@ -22,11 +22,11 @@ static void count_tabs(int max_len, int prev_len) {
     else {
         spaces_count = max_len;
         while (spaces_count % 8)
-            spaces_count++;
+            ++spaces_count;
     }
     tabs_count = (spaces_count - prev_len) / 8;
     if (!(prev_len % 8))
-        tabs_count--;
+        --tabs_count;
     while (tabs_count--)
         mx_printchar('\t');
     mx_printchar('\t');
@@ -57,7 +57,7 @@ void mx_x_output(t_list *files, t_flags *flags, t_multicol *mltcl) {
 
     for (int i = 0; i < mltcl->rows; ++i) {
         int x = i * mltcl->cols - i;
-        
+
         for (int j = x; j < mltcl->cols * (i + 1); ++j) {
             if (j != x && ((i + j) < mltcl->cols * (i + 1)))
                 count_tabs(mltcl->max, prev_len);

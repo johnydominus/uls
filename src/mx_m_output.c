@@ -17,6 +17,7 @@ void mx_m_output(t_list *files, t_flags *flags) {
     t_list *iter = files;
     struct winsize window;
     int cols = 0;
+
     if (isatty(1))
         ioctl(0, TIOCGWINSZ, &window);
     else
