@@ -17,26 +17,3 @@ void mx_flag_parser(int *i, int argc, char **argv, t_flags *flags) {
             break;
     }
 }
-
-//ALL FLAGS
-//@1AaBbCcdeFfGgHhikLlmnOoPpqRrSsTtuUvWwx
-
-//OVERLAPING
-// 1 C x
-// c u
-// B b w q
-// H L P
-
-
-
-//TERMINAL DEFAULT
-// C q
-
-//SUPER-USER DEFAULT
-// A
-
-//DONE:
-// G F p
-
-//IN PROGRESS:
-// A a C 1 x r l

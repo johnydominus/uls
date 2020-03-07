@@ -1,5 +1,0 @@
-https://github.com/hugohow/ft_ls				- working ls from 42
-https://github.com/coreutils/coreutils/blob/master/src/ls.c 	- original ls source code
-https://www.opennet.ru/cgi-bin/opennet/man.cgi?topic=lstat	- lstat documentation
-http://www.firststeps.ru/linux/r.php?20				- diropen documentation
-

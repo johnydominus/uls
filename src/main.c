@@ -6,7 +6,7 @@ int main (int argc, char **argv) {
     t_list *dirs_args = NULL;
     int i = 1;
 
-    mx_flag_parser(&i, argc, argv, flags);    
+    mx_flag_parser(&i, argc, argv, flags);
     files_args = mx_file_args_to_list(&i, &dirs_args, argc, argv);
     if (files_args != NULL) {
         mx_process_list(ALL, files_args, flags);
@@ -17,7 +17,7 @@ int main (int argc, char **argv) {
         mx_free_list(&dirs_args);
     }
     free(flags);
-    system("leaks -q uls");
+    // system("leaks -q uls");
     // struct winsize w;
     // ioctl(0, TIOCGWINSZ, &w);
     // printf ("lines %d\n", w.ws_row);

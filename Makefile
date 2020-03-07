@@ -13,13 +13,18 @@ SRC  = 	free_functions.c \
 		mx_error.c \
 		mx_flag_parser.c \
 		mx_init_flags.c \
+		mx_m_output.c \
+		mx_multicol.c \
+		mx_multicol_output.c \
 		mx_output.c \
+		mx_print_filename.c \
 		mx_print_long_format.c \
 		mx_process_dir.c \
 		mx_process_list.c \
 		mx_save_args.c \
 		mx_sort_files.c \
 		mx_sort_lists.c \
+
 
 SRCS = $(addprefix src/, $(SRC))
 

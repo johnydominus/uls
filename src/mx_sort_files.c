@@ -1,9 +1,5 @@
 #include "uls.h"
 
-static void time_sort(t_list *files, t_flags *flags) {
-
-}
-
 void mx_sort_files(t_list *files, t_flags *flags) {
     if (files != NULL) {
         if (flags->f) {}
@@ -24,18 +20,3 @@ void mx_sort_files(t_list *files, t_flags *flags) {
         }
     }
 }
-
-//SORTING FLAGS:
-//-S    by size
-//-t    by time modified
-//-tc   by time status changed
-//-tu   by time of last access
-//-tU   by time of creation
-//-r    reverse sort order
-//-f    not sorted
-
-//OVERLAPING:
-// c u U
-
-//OVERRIDING:
-// S over t
