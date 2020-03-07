@@ -60,9 +60,9 @@ typedef struct stat t_stat;
 
 typedef struct {
     t_stat stat;
-    char d_name[1024];
+    char d_name[256];
     char *full_path;
-    char *error;
+    bool error;
 } t_file;
 
 typedef struct {
@@ -98,11 +98,19 @@ void mx_m_output(t_list *files, t_flags *flags);
 void mx_print_filename (t_file *file, t_flags *flags);
 int mx_add_symb(t_file *file, t_flags *flags);
 t_list *mx_process_dir(t_file *dir, t_flags *flags);
-t_list *mx_file_args_to_list (int *i, 
-                              t_list **dir_args, 
-                              int argc, 
-                              char **argv);
+t_list *mx_file_args_to_list (int *i, t_list **dir_args, 
+                              int argc, char **argv);
 t_file *mx_create_t_file(void);
+char *mx_four_to_one(char *first_part, char *text,
+char *second_part, char *third_part);
+void mx_print_path(char *path, t_flags *flags);
+void mx_print_name_list(t_list *files);
+void mx_print_long_format(t_list *files, t_flags *flags);
+void mx_file_mode(t_file *file);
+void mx_user_group(t_file *file, t_flags *flags);
+void mx_print_time(t_file *file);
+
+>>>>>>> master
 void mx_print_list(t_list *files);
 char **mx_save_args (int *i, int *margc, int argc, char **argv);
 bool mx_check_flag_validity (char c);

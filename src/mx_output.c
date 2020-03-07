@@ -18,6 +18,6 @@ void mx_output(t_flags *flags, t_list *files) {
         mx_m_output(files, flags);
     else if (flags->C || flags->x)
         mx_multicol_output(files, flags);
-//     else if (flags->l)
-//         mx_print_long_format(files, flags);
+    else if (flags->l)
+        mx_print_long_format(files, flags);
 }
