@@ -3,21 +3,23 @@ INC = ./inc/
 INCLIB = ./libmx/inc/
 HEADTMP = ./uls.h ./libmx.h
 
-SRC = main.c \
-	  mx_process_list.c \
-	  mx_check_flag_validity.c \
-	  mx_error.c \
-	  mx_flag_parser.c \
-	  mx_init_flags.c \
-	  mx_output.c \
-	  mx_save_args.c \
-	  mx_process_dir.c \
-	  mx_sort_files.c \
-	  mx_check_flags.c \
-	  free_functions.c \
-	  mx_comparators_one.c \
-	  mx_comparators_two.c \
-	  mx_sort_lists.c
+SRC  = 	free_functions.c \
+		long_format.c \
+		main.c \
+		mx_check_flag_validity.c \
+		mx_check_flags.c \
+		mx_comparators_one.c \
+		mx_comparators_two.c \
+		mx_error.c \
+		mx_flag_parser.c \
+		mx_init_flags.c \
+		mx_output.c \
+		mx_print_long_format.c \
+		mx_process_dir.c \
+		mx_process_list.c \
+		mx_save_args.c \
+		mx_sort_files.c \
+		mx_sort_lists.c \
 
 SRCS = $(addprefix src/, $(SRC))
 
@@ -27,8 +29,8 @@ OBJO = $(addprefix obj/, $(OBJ))
 
 # CFLGS = -std=c11 -Wall -Wpedantic -Werror -Wextra -g -fsanitize=address
 # CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address # Warnig does not error 
-CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning;
-# CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning; To use leaks command;
+# CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -fsanitize=undefined -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning;
+CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning; To use leaks command;
 
 all: install
 

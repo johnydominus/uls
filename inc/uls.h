@@ -77,7 +77,7 @@ typedef struct stat t_stat;
 
 typedef struct s_file {
     t_stat stat;
-    char d_name[1024];
+    char d_name[256];
     char *full_path;
     bool error;
 } t_file;
@@ -103,6 +103,11 @@ char *second_part, char *third_part);
 t_list *mx_file_args_to_list (int *i, t_list **dir_args, int argc, char **argv);
 t_file *mx_create_t_file();
 void mx_print_path(char *path, t_flags *flags);
+void mx_print_name_list(t_list *files);
+void mx_print_long_format(t_list *files, t_flags *flags);
+void mx_file_mode(t_file *file);
+void mx_user_group(t_file *file, t_flags *flags);
+void mx_print_time(t_file *file);
 
 void mx_print_list(t_list *files);
 char **mx_save_args (int *i, int *margc, int argc, char **argv);
