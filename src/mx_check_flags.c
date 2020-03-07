@@ -33,8 +33,10 @@ static void checkflag_two(char c, t_flags *flags) {
         flags->l = false;
         flags->one = false;
     }
-    else if (c == 'n') flags->n = true;
-    else if (c == 'p') flags->p = true;
+    else if (c == 'n') {
+        flags->n = true;
+        flags->l = true;
+    }
     else if (c == 'r') flags->r = true;
     else if (c == 'S') flags->S = true;
     else if (c == 't') flags->t = true;
@@ -74,4 +76,5 @@ void mx_check_flags(char c, t_flags *flags) {
     checkflag_two(c, flags);
     checkflag_three(c, flags);
     if (c == 'A') flags->A = true;
+    else if (c == 'p') flags->p = true;
 }

@@ -39,16 +39,22 @@ void mx_user_group(t_file *file, t_flags *flags) {
     struct passwd *pw = getpwuid(file->stat.st_uid);
     struct group *group = getgrgid(file->stat.st_gid);
 
+    if (pw == NULL)
+        printf("%s\n", strerror(errno));
     mx_printchar(' ');
     if (flags->n == true) 
         mx_printint(pw->pw_uid);
     else
         mx_printstr(pw->pw_name);
     mx_printstr("  ");
-    if (flags->n == true) 
-        mx_printint(group->gr_gid);
-    else
-        mx_printstr(group->gr_name);
+    if(group == NULL)
+        mx_printint(file->stat.st_gid);
+    else {
+        if (flags->n == true) 
+            mx_printint(group->gr_gid);
+        else
+            mx_printstr(group->gr_name);
+    }
     mx_printchar(' ');
 }
 
