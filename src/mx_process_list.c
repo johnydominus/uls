@@ -1,12 +1,15 @@
 #include "uls.h"
 
-void mx_print_path(char *path, t_flags *flags) {
+void mx_print_path(t_file *data, t_flags *flags) {
     if (flags->first == true) {
         flags->first = false;
         return;
     }
     mx_printstr("\n");
-    mx_printstr(path);
+    if (data->full_path == NULL)
+        mx_printstr(data->d_name);
+    else
+        mx_printstr(data->full_path);
     mx_printstr(":\n");
 }
 
@@ -25,7 +28,7 @@ void mx_process_list(t_print arguments, t_list *files, t_flags *flags) {
                 subdir = mx_process_dir((t_file*)iter->data, flags);
                 if(((t_file*)iter->data)->error == true)
                     continue;
-                mx_print_path(((t_file*)iter->data)->full_path, flags);
+                mx_print_path(((t_file*)iter->data), flags);
                 mx_process_list(ALL, subdir, flags);
                 if (flags->R)
                     mx_process_list(DIREC, subdir, flags);

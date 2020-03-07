@@ -103,7 +103,7 @@ t_list *mx_file_args_to_list (int *i, t_list **dir_args,
 t_file *mx_create_t_file(void);
 char *mx_four_to_one(char *first_part, char *text,
 char *second_part, char *third_part);
-void mx_print_path(char *path, t_flags *flags);
+void mx_print_path(t_file *data, t_flags *flags);
 void mx_print_name_list(t_list *files, t_flags* flags);
 void mx_print_long_format(t_list *files, t_flags *flags);
 void mx_file_mode(t_file *file);

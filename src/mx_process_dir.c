@@ -81,7 +81,7 @@ t_list *mx_process_dir(t_file *dir, t_flags *flags) {
         closedir(m_dir);
     }
     else {
-        mx_print_path(dir->full_path, flags);
+        mx_print_path(dir, flags);
         print_error("uls: ", dir->d_name, ": ", strerror(errno));
         dir->error = true;
     }
