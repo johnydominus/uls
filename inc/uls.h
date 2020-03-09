@@ -60,6 +60,14 @@ typedef struct {
 typedef struct dirent t_dirent;
 typedef struct stat t_stat;
 
+typedef struct s_daddy{
+    long n_link;
+    long own_name;
+    long grp_name;
+    long size;
+    long ma_size;
+} t_daddy;
+
 typedef struct {
     t_stat stat;
     char d_name[256];
@@ -86,10 +94,8 @@ typedef enum {
     ILLEGAL_FLAG
 } t_error;
 
-void args_to_list(int argc, 
-                  char **argv,
-                  t_list **files_args, 
-                  t_list **dir_flags);
+void args_to_list(int argc, char **argv,
+t_list **files_args, t_list **dir_flags);
 void mx_process_list(t_print arguments, t_list *files, t_flags *flags);
 void mx_free_list(t_list **files);
 void mx_output(t_flags *flags, t_list *files);
@@ -101,7 +107,7 @@ void mx_print_filename (t_file *file, t_flags *flags);
 int mx_add_symb(t_file *file, t_flags *flags);
 t_list *mx_process_dir(t_file *dir, t_flags *flags);
 t_list *mx_file_args_to_list (int *i, t_list **dir_args, 
-                              int argc, char **argv);
+int argc, char **argv);
 t_file *mx_create_t_file(void);
 char *mx_four_to_one(char *first_part, char *text,
 char *second_part, char *third_part);
@@ -109,7 +115,7 @@ void mx_print_path(t_file *data, t_flags *flags);
 void mx_print_name_list(t_list *files, t_flags* flags);
 void mx_print_long_format(t_list *files, t_flags *flags);
 void mx_file_mode(t_file *file);
-void mx_user_group(t_file *file, t_flags *flags);
+void mx_user_group(t_file *file, t_daddy *daddy);
 void mx_print_time(t_file *file, t_flags *flags);
 void mx_print_list(t_list *files);
 char **mx_save_args (int *i, int *margc, int argc, char **argv);
@@ -120,10 +126,10 @@ void mx_flag_parser (int *i, int argc, char **argv, t_flags *flags);
 void mx_error(t_error error_type, char *argument);
 void mx_process_arg(char **args, t_flags *flags);
 void mx_sort_files(t_list *files, t_flags *flags);
-t_list *mx_sort_lists(t_list *lst, 
-                      bool (*cmp)(void *, void*, 
-                      bool reverse),
-                      t_flags *flags);
+t_list *mx_sort_lists(t_list *lst, bool (*cmp)(void *, void*, bool reverse),
+t_flags *flags);
+void mx_print_with_tabl(long num, long num_of_dig, bool dig);
+char mx_which_file(t_file *file);
 
 //Sorting comparators:
 bool mx_size_cmp(void *data1, void *data2, bool reverse);
