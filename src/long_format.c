@@ -1,6 +1,6 @@
 #include "uls.h"
 
-char which_file(t_file *file) {
+char mx_which_file(t_file *file) {
     if (MX_ISBLK(file->stat.st_mode) == true)
         return 'b';
     else if (MX_ISCHR(file->stat.st_mode) == true)
@@ -20,7 +20,7 @@ char which_file(t_file *file) {
 void mx_file_mode(t_file *file) {
     char f_mode[11];
 
-    f_mode[0] = which_file(file);
+    f_mode[0] = mx_which_file(file);
     f_mode[1] = (file->stat.st_mode & S_IRUSR) ? 'r' : '-';
     f_mode[2] = (file->stat.st_mode & S_IWUSR) ? 'w' : '-';
     f_mode[3] = (file->stat.st_mode & S_IXUSR) ? 'x' : '-';
@@ -35,20 +35,27 @@ void mx_file_mode(t_file *file) {
     mx_printstr(" ");
 }
 
-void mx_user_group(t_file *file, t_flags *flags) {
+void mx_print_name_with_tabl(long len, char *name) {
+    for (int i = 0; name[i] != '\0'; i++, len--)
+        mx_printchar(name[i]);
+    while (len-- > 0)
+        mx_printchar(' ');
+}
+
+void mx_user_group(t_file *file, t_daddy *daddy) {
     struct passwd *pw = getpwuid(file->stat.st_uid);
     struct group *group = getgrgid(file->stat.st_gid);
 
     mx_printchar(' ');
-    if (flags->n == true) 
-        mx_printint(pw->pw_uid);
+    if (pw == NULL) 
+        mx_print_with_tabl(file->stat.st_uid, daddy->own_name, true);
     else
-        mx_printstr(pw->pw_name);
+        mx_print_name_with_tabl(daddy->own_name, pw->pw_name);
     mx_printstr("  ");
-    if (flags->n == true) 
-        mx_printint(group->gr_gid);
+    if (group == NULL) 
+        mx_print_with_tabl(file->stat.st_uid, daddy->grp_name, true);
     else
-        mx_printstr(group->gr_name);
+        mx_print_name_with_tabl(daddy->grp_name, group->gr_name);
     mx_printchar(' ');
 }
 
