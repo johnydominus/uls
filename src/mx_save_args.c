@@ -1,5 +1,17 @@
 #include "uls.h"
 
+static void free_errors(t_list **errors) {
+    t_list *temp_files = *errors;
+
+    while (temp_files) {
+        t_list *temp = temp_files;
+
+        temp_files = temp_files->next;
+        free(temp->data);
+        free(temp);
+    }
+}
+
 void mx_print_errors_list(t_list *files) {
     for (t_list *cur = files; cur; cur = cur->next) {
         char *temp = (char*)cur->data; 
@@ -9,7 +21,7 @@ void mx_print_errors_list(t_list *files) {
 }
 
 char *mx_four_to_one(char *first_part, char *text,
-char *second_part, char *third_part) {
+                     char *second_part, char *third_part) {
     int len1 = mx_strlen(first_part);
     int len2 = mx_strlen(text);
     int len3 = mx_strlen(second_part);
@@ -23,7 +35,8 @@ char *second_part, char *third_part) {
     return error;
 }
 
-t_list *mx_file_args_to_list (int *i, t_list **dir_args, int argc, char **argv) {
+t_list *mx_file_args_to_list (int *i, t_list **dir_args,
+                              int argc, char **argv) {
     t_list *files_args = NULL;
     t_list *errors = NULL;
     t_file *file = mx_create_t_file();
@@ -49,9 +62,10 @@ t_list *mx_file_args_to_list (int *i, t_list **dir_args, int argc, char **argv) 
             file = mx_create_t_file();
         }
     }
-    //TODO add sorting
+    if(errors)
+        mx_sort_list(errors, mx_errors_cmp);
     mx_print_errors_list(errors);
-    mx_free_list(&errors);
+    free_errors(&errors);
     free(file);
     return files_args;
 }

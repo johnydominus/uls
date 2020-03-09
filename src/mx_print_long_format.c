@@ -105,13 +105,29 @@ void mx_print_major_minor(t_file *file) {
    mx_printint(minor); 
 }
 
+static void print_link(t_file *file) {
+    if (MX_ISLNK(file->stat.st_mode)) {
+        char *buf = NULL;
+        ssize_t size = 0;
+
+        buf = (char*)malloc(sizeof(file->stat.st_size + 1));
+        size = readlink(file->full_path, buf, file->stat.st_size + 1);
+        if (size > 0) {
+            mx_printstr(" -> ");
+            mx_printstr(buf);
+        }
+        if (buf)
+            free(buf);
+    }
+}
+
 void mx_print_long_format(t_list *files, t_flags *flags) {
     if (flags->l == true) {
         t_daddy daddy = who_the_daddy(files);
         // printf("daddy = %ld, %ld; group = %ld own = %ld", daddy.size, daddy.n_link, daddy.own_name, daddy.grp_name);
 
         for (t_list *cur = files; cur; cur = cur->next) {
-            t_file *temp = (t_file*)cur->data; 
+            t_file *temp = (t_file*)cur->data;
             mx_file_mode(temp);
             mx_print_with_tabl(temp->stat.st_nlink, daddy.n_link, false);
             mx_user_group(temp, &daddy);
@@ -120,8 +136,9 @@ void mx_print_long_format(t_list *files, t_flags *flags) {
             else
                 mx_print_with_tabl(temp->stat.st_size, daddy.size, false);
             mx_printstr(" ");
-            mx_print_time(temp);
+            mx_print_time(temp, flags);
             mx_printstr(temp->d_name);
+            print_link(temp);
             mx_printstr("\n");
         }
     }

@@ -14,7 +14,7 @@
 #include <time.h>
 #include <string.h>
 
-#define MX_USED_FLAGS "ACFRSUcflmnprtux1"
+#define MX_USED_FLAGS "ACFGRSUcflmnprtux1"
 
 #define MX_RED     "\x1b[31m"
 #define MX_GREEN   "\x1b[32m"
@@ -40,6 +40,7 @@ typedef struct {
     bool c;
     bool F;
     bool f;
+    bool G;
     bool l;
     bool m;
     bool n;
@@ -53,6 +54,7 @@ typedef struct {
     bool x;
     bool first;
     bool forcedc;
+    bool printpath;
 } t_flags;
 
 typedef struct dirent t_dirent;
@@ -114,7 +116,7 @@ void mx_print_name_list(t_list *files, t_flags* flags);
 void mx_print_long_format(t_list *files, t_flags *flags);
 void mx_file_mode(t_file *file);
 void mx_user_group(t_file *file, t_daddy *daddy);
-void mx_print_time(t_file *file);
+void mx_print_time(t_file *file, t_flags *flags);
 void mx_print_list(t_list *files);
 char **mx_save_args (int *i, int *margc, int argc, char **argv);
 bool mx_check_flag_validity (char c);
@@ -136,3 +138,5 @@ bool mx_time_access_cmp(void *data1, void *data2, bool reverse);
 bool mx_time_creat_cmp(void *data1, void *data2, bool reverse);
 bool mx_time_mod_cmp(void *data1, void *data2, bool reverse);
 bool mx_alpha_cmp(void *data1, void *data2, bool reverse);
+bool mx_errors_cmp(void *data1, void *data2);
+bool mx_alpha_cmp_lst(void *data1, void *data2);
