@@ -2,7 +2,11 @@
 
 void mx_flag_parser(int *i, int argc, char **argv, t_flags *flags) {
     for (; *i < argc; ++(*i)) {
-        if (argv[*i][0] == '-' && argv[*i][1]) {
+        if (!mx_strcmp(argv[*i], "--")) {
+            ++(*i);
+            break;
+        }
+        if (argv[*i][0] == '-' && argv[*i][1] && argv[*i][1] != ' ') {
             int len = mx_strlen(argv[*i]);
 
             for (int j = 1; j < len; ++j) {

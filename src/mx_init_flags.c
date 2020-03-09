@@ -20,6 +20,7 @@ static void init(t_flags *flags) {
     flags-> u = false;
     flags-> x = false;
     flags->forcedc = false;
+    flags->printpath = false;
 }
 
 static void tak_treba(t_flags *flags) {
