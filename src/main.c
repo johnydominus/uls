@@ -23,4 +23,5 @@ int main (int argc, char **argv) {
     if (dirs_args != NULL)
         auditor_costil(dirs_args, flags, DIREC);
     free(flags);
+    // system("leaks -q uls");
 }

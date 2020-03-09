@@ -23,6 +23,8 @@ static t_multicol *multicol_subinit(t_multicol *multicol) {
     while (multicol->col_width % 8 != 0)
         ++multicol->col_width;
     multicol->cols = multicol->win_size.ws_col / multicol->col_width;
+    if (multicol->cols == 0)
+        multicol->cols = 1;
     if (multicol->files_num % multicol->cols)
         multicol->rows =  (multicol->files_num / multicol->cols) + 1;
     else
