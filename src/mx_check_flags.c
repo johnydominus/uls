@@ -13,7 +13,7 @@ static void checkflag_one(char c, t_flags *flags) {
         flags->one = false;
         flags->x = false;
         flags->l = false;
-        flags->m = false;
+        // flags->m = false;
         flags->forcedc = true;
     }
     else if (c == 'c') {
