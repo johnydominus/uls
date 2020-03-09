@@ -3,19 +3,26 @@
 void mx_print_path(t_file *data, t_flags *flags) {
     if (flags->first == true) {
         flags->first = false;
-        // return;
+        if (flags->printpath) {
+            if (data->full_path == NULL)
+                mx_printstr(data->d_name);
+            else
+                mx_printstr(data->full_path);
+            mx_printstr(":\n");
+        }
     }
-    else 
+    else {
         mx_printstr("\n");
-    if (data->full_path == NULL)
-        mx_printstr(data->d_name);
-    else
-        mx_printstr(data->full_path);
-    mx_printstr(":\n");
+        if (data->full_path == NULL)
+            mx_printstr(data->d_name);
+        else
+            mx_printstr(data->full_path);
+        mx_printstr(":\n");
+    }
 }
 
 /*
-* If we do not have argumetns then in t_file we have only d_name = "." 
+* If we do not have argumetns then in t_file we have only d_name = "."
 */
 void mx_process_list(t_print arguments, t_list *files, t_flags *flags) {
     t_list *subdir = NULL;

@@ -37,7 +37,7 @@ void mx_print_long_format(t_list *files, t_flags *flags) {
             mx_user_group(temp, flags);
             mx_print_with_tabl(temp->stat.st_size, num_of_dig_size);
             mx_printstr(" ");
-            mx_print_time(temp);
+            mx_print_time(temp, flags);
             mx_printstr(temp->d_name);
             mx_printstr("\n");
         }
