@@ -6,7 +6,7 @@ long mx_strlen_own(t_file *file) {
 
     if (pw == NULL) {
         for (uid_t uid = file->stat.st_uid; uid > 0; uid /= 10)
-            result *= 10;
+            result++;
     }
     else
         return strlen(pw->pw_name);
@@ -19,7 +19,7 @@ long mx_strlen_grp(t_file *file) {
 
     if (group == NULL) {
         for (gid_t gid = file->stat.st_gid; gid > 0; gid /= 10)
-            result *= 10;
+            result++;
     }
     else
         return mx_strlen(group->gr_name);
@@ -33,7 +33,7 @@ void mx_print_with_tabl(long num, long num_of_dig, bool name) {
         // num_of_dig /= 10;
     if (name == true) {
         mx_printstr(result);
-        for (num_of_dig = num_of_dig - mx_strlen(result); num_of_dig > 0;
+        for (num_of_dig = num_of_dig - mx_strlen(result) - 1; num_of_dig > 0;
              num_of_dig--)
             mx_printchar(' ');
     }

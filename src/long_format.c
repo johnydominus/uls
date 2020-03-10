@@ -55,7 +55,7 @@ void mx_user_group(t_file *file, t_daddy *daddy) {
         mx_print_name_with_tabl(daddy->own_name, pw->pw_name);
     mx_printstr("  ");
     if (group == NULL) 
-        mx_print_with_tabl(file->stat.st_uid, daddy->grp_name, true);
+        mx_print_with_tabl(file->stat.st_gid, daddy->grp_name, true);
     else
         mx_print_name_with_tabl(daddy->grp_name, group->gr_name);
     mx_printchar(' ');

@@ -50,6 +50,7 @@ t_list *mx_file_args_to_list (int *i, t_list **dir_args,
         for (; *i < argc; (*i)++) {
             if (lstat(argv[*i], &file->stat) == 0) {
                 mx_strcpy(file->d_name, argv[*i]);
+                if (MX_ISLNK(file->stat.st_mode) == true && 
                 if (MX_ISDIR(file->stat.st_mode) == true)
                     mx_push_front(dir_args, file);
                 else 
