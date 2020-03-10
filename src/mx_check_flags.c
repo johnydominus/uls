@@ -58,7 +58,7 @@ static void checkflag_three(char c, t_flags *flags) {
         flags->one = false;
         flags->C = false;
         flags->l = false;
-        flags->m = false;
+//        flags->m = false;
     }
     else if (c == 'l') {
         flags->l = true;
