@@ -40,8 +40,8 @@ CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -fsanitize=undef
 all: install
 
 install:
-	@make -C libmx install
-	@make -C libmx/ -f Makefile clean
+	# @make -C libmx install
+	# @make -C libmx/ -f Makefile clean
 	@clang $(CFLGS) -I $(INC) -I $(INCLIB) -c $(SRCS)
 	@mkdir -p obj
 	@mv $(OBJ) ./obj
