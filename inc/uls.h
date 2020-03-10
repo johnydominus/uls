@@ -66,6 +66,7 @@ typedef struct s_daddy{
     long grp_name;
     long size;
     long ma_size;
+    long total;
 } t_daddy;
 
 typedef struct {
