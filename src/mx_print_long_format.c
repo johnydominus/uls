@@ -23,9 +23,10 @@ static void fuck_auditor(t_file *file, t_daddy *daddy) {
     long major = ((int)(((unsigned int)file->stat.st_rdev >> 24) & 0xff));
     long size = 0;
 
-    for (; major > 0; major /= 10) {
-       size++;
-    }
+    for (; major > 0; major /= 10)
+        size++;
+    if (major == 0)
+        size += 2;
     if (daddy->ma_size < size)
         daddy->ma_size = size;
 }
@@ -76,6 +77,7 @@ void mx_print_long_format(t_list *files, t_flags *flags) {
     if (flags->l == true) {
         t_daddy daddy = who_the_daddy(files);
 
+        // printf("%ld\n", daddy.ma_size);
         print_total(files, daddy.total, flags);
         for (t_list *cur = files; cur; cur = cur->next) {
             t_file *temp = (t_file*)cur->data;
