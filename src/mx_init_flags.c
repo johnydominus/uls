@@ -5,11 +5,9 @@ static void init(t_flags *flags) {
     flags->A = false;
     flags->C = true;
     flags->c = false;
-    flags->F = false;
     flags->G = false;
     flags->l = false;
     flags->m = false;
-    flags->p = false;
     flags->R = false;
     flags->r = false;
     flags->S = false;

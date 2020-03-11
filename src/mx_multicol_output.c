@@ -54,7 +54,7 @@ void mx_c_output(t_list *files, t_flags *flags, t_multicol *mltcl) {
             }
             if (i + j < mltcl->files_num) {
                 mx_print_filename(data, flags);
-                prev_len = mx_strlen(data->d_name) + mx_add_symb(data, flags);
+                prev_len = mx_strlen(data->d_name);
             }
         }
         mx_printchar('\n');
@@ -75,7 +75,7 @@ void mx_x_output(t_list *files, t_flags *flags, t_multicol *mltcl) {
             if (i + j < mltcl->cols * (i + 1) && i + j < mltcl->files_num) {
                 data = get_nth_file(files, i + j);
                 mx_print_filename(data, flags);
-                prev_len = mx_strlen(data->d_name) + mx_add_symb(data, flags);
+                prev_len = mx_strlen(data->d_name);
             }
         }
         mx_printchar('\n');
