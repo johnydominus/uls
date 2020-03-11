@@ -31,7 +31,7 @@ t_list **files_args, t_list **dir_args) {
 static void push_file(t_file **file, char *argv,
 t_list **files_args, t_list **dir_args) {
     mx_strcpy((*file)->d_name, argv);
-    if (MX_ISLNK((*file)->stat.st_mode) == true && mx_OMG_auditor(2) == false)
+    if (MX_ISLNK((*file)->stat.st_mode) == true && mx_omg_auditor(2) == false)
         mx_push_link(file, files_args, dir_args);
     else if (MX_ISDIR((*file)->stat.st_mode) == true)
         mx_push_front(dir_args, (*file));

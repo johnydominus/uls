@@ -93,7 +93,7 @@ typedef enum {
     ILLEGAL_FLAG
 } t_error;
 
-bool mx_OMG_auditor(int set);
+bool mx_omg_auditor(int set);
 void args_to_list(int argc, char **argv,
 t_list **files_args, t_list **dir_flags);
 void mx_process_list(t_print arguments, t_list *files, t_flags *flags);

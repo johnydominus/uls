@@ -23,12 +23,12 @@ static char get_file_acl(t_file *file) {
                       file->d_name : file->full_path;
 
         if (listxattr(name, NULL, 0, XATTR_NOFOLLOW) > 0)
-            return ('@');
+            return '@';
         if ((tmp = acl_get_file(name, ACL_TYPE_EXTENDED))) {
             acl_free(tmp);
-            return ('+');
+            return '+';
         }
-        return (' ');
+        return ' ';
 }
 
 void mx_file_mode(t_file *file) {
