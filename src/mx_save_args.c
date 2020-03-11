@@ -35,6 +35,19 @@ char *mx_four_to_one(char *first_part, char *text,
     return error;
 }
 
+static void mx_push_link(t_file **file,
+t_list **files_args, t_list **dir_args) {
+    t_file *new_file = mx_create_t_file();
+
+    stat((*file)->d_name, &new_file->stat);
+    mx_strcpy(new_file->d_name, (*file)->d_name);
+    free(*file);
+    if (MX_ISDIR(new_file->stat.st_mode) == true)
+        mx_push_front(dir_args, new_file);
+    else 
+        mx_push_front(files_args, new_file);
+}
+
 t_list *mx_file_args_to_list (int *i, t_list **dir_args,
                               int argc, char **argv) {
     t_list *files_args = NULL;
@@ -50,8 +63,11 @@ t_list *mx_file_args_to_list (int *i, t_list **dir_args,
         for (; *i < argc; (*i)++) {
             if (lstat(argv[*i], &file->stat) == 0) {
                 mx_strcpy(file->d_name, argv[*i]);
-                if (MX_ISLNK(file->stat.st_mode) == true && 
-                if (MX_ISDIR(file->stat.st_mode) == true)
+                if (MX_ISLNK(file->stat.st_mode) == true
+                    && mx_OMG_auditor(2) == false) {
+                    mx_push_link(&file, &files_args, dir_args);
+                }
+                else if (MX_ISDIR(file->stat.st_mode) == true)
                     mx_push_front(dir_args, file);
                 else 
                     mx_push_front(&files_args, file);

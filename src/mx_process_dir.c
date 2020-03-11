@@ -74,8 +74,9 @@ t_list *mx_process_dir(t_file *dir, t_flags *flags) {
 
     if (dir->full_path != NULL)
         m_dir = opendir(dir->full_path);
-    else 
+    else {
         m_dir = opendir(dir->d_name);
+    }
     if (m_dir != NULL) {
         fill_list(m_dir, flags, &files, dir);
         closedir(m_dir);

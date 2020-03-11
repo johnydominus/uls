@@ -71,7 +71,7 @@ typedef struct s_daddy{
 
 typedef struct {
     t_stat stat;
-    char d_name[256];
+    char d_name[258];
     char *full_path;
     bool error;
 } t_file;
@@ -95,6 +95,7 @@ typedef enum {
     ILLEGAL_FLAG
 } t_error;
 
+bool mx_OMG_auditor(int set);
 void args_to_list(int argc, char **argv,
 t_list **files_args, t_list **dir_flags);
 void mx_process_list(t_print arguments, t_list *files, t_flags *flags);

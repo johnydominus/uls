@@ -152,16 +152,37 @@ static void print_link(t_file *file) {
     }
 }
 
+/*
+*if(MX_ISLNK(((t_file*)files->data)->stat.st_size) == true) {
+*    mx_printstr("tut\n");
+*}
+* Why it does not work??
+*/
+
+void mx_print_total(t_list *files, long total) {
+        if (mx_which_file((t_file*)files->data) == 'l' && files->next == NULL)
+            return;
+        if (files != NULL) {
+            mx_printstr("total ");
+            mx_printint(total);
+            mx_printchar('\n');
+        }
+}
 void mx_print_long_format(t_list *files, t_flags *flags) {
     if (flags->l == true) {
         t_daddy daddy = who_the_daddy(files);
         // printf("daddy = %ld, %ld; group = %ld own = %ld", daddy.size, daddy.n_link, daddy.own_name, daddy.grp_name);
 
-        if (files != NULL) {
-            mx_printstr("total ");
-            mx_printint(daddy.total);
-            mx_printchar('\n');
-        }
+        
+        // printf("%s\n", (((t_file*)files->data)->d_name));
+        // if (mx_which_file((t_file*)files->data) == 'l')
+            // mx_printstr("wtf\n");
+        // if(mx_which_file((t_file*)files->data) == 'l'
+           // && files->next == NULL) { 
+            // printf("tut\n");
+        // }
+
+        mx_print_total(files, daddy.total);
         for (t_list *cur = files; cur; cur = cur->next) {
             t_file *temp = (t_file*)cur->data;
             mx_file_mode(temp);

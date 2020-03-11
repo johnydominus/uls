@@ -6,6 +6,16 @@ static void auditor_costil(t_list *alist, t_flags *flags, t_print fd) {
     mx_free_list(&alist);
 }
 
+bool mx_OMG_auditor(int set) {
+    static bool l_flag = false;
+
+    if (set == 1)
+        l_flag = true;
+    else if (set == 0)
+        l_flag = false;
+    return l_flag;
+}
+
 int main (int argc, char **argv) {
     t_flags *flags = mx_init_flags();
     t_list *files_args = NULL;
@@ -14,6 +24,8 @@ int main (int argc, char **argv) {
 
     mx_flag_parser(&i, argc, argv, flags);
     flags->printpath = (i + 2 > argc) ? false : true;
+    if (flags->l == true)
+       mx_OMG_auditor(1); 
     files_args = mx_file_args_to_list(&i, &dirs_args, argc, argv);
     if (files_args != NULL) {
         auditor_costil(files_args, flags, ALL);
