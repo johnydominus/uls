@@ -60,13 +60,14 @@ static t_daddy who_the_daddy(t_list *files) {
 */
 
 static void print_total(t_list *files, long total) {
-        if (mx_which_file((t_file*)files->data) == 'l' && files->next == NULL)
+    if (files != NULL) {
+        if (mx_which_file((t_file*)files->data) == 'l'
+            && files->next == NULL)
             return;
-        if (files != NULL) {
-            mx_printstr("total ");
-            mx_printint(total);
-            mx_printchar('\n');
-        }
+        mx_printstr("total ");
+        mx_printint(total);
+        mx_printchar('\n');
+    }
 }
 
 void mx_print_long_format(t_list *files, t_flags *flags) {
