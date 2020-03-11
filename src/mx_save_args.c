@@ -49,7 +49,7 @@ t_list *mx_file_args_to_list (int *i, t_list **dir_args,
                 }
                 else if (MX_ISDIR(file->stat.st_mode) == true)
                     mx_push_front(dir_args, file);
-                else 
+                else
                     mx_push_front(&files_args, file);
             }
             else {
