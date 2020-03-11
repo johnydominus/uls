@@ -25,17 +25,12 @@ static void checkflag_one(char c, t_flags *flags) {
 
 static void checkflag_two(char c, t_flags *flags) {
     if (c == 'F') flags->F = true;
-    else if (c == 'f') flags->f = true;
     else if (c == 'm') {
         flags->m = true;
         flags->C = false;
         flags->x = false;
         flags->l = false;
         flags->one = false;
-    }
-    else if (c == 'n') {
-        flags->n = true;
-        flags->l = true;
     }
     else if (c == 'r') flags->r = true;
     else if (c == 't') flags->t = true;
@@ -78,5 +73,4 @@ void mx_check_flags(char c, t_flags *flags) {
     else if (c == 'p') flags->p = true;
     else if (c == 'S') flags->S = true;
     else if (c == 'G' && isatty(1)) flags->G = true;
-
 }

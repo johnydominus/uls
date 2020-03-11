@@ -1,25 +1,5 @@
 #include "uls.h"
 
-static void free_errors(t_list **errors) {
-    t_list *temp_files = *errors;
-
-    while (temp_files) {
-        t_list *temp = temp_files;
-
-        temp_files = temp_files->next;
-        free(temp->data);
-        free(temp);
-    }
-}
-
-void mx_print_errors_list(t_list *files) {
-    for (t_list *cur = files; cur; cur = cur->next) {
-        char *temp = (char*)cur->data; 
-            mx_printerr(temp);
-            mx_printerr("\n");
-    }
-}
-
 char *mx_four_to_one(char *first_part, char *text,
                      char *second_part, char *third_part) {
     int len1 = mx_strlen(first_part);
@@ -79,10 +59,7 @@ t_list *mx_file_args_to_list (int *i, t_list **dir_args,
             file = mx_create_t_file();
         }
     }
-    if(errors)
-        mx_sort_list(errors, mx_errors_cmp);
     mx_print_errors_list(errors);
-    free_errors(&errors);
     free(file);
     return files_args;
 }

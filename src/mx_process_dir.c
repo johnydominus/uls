@@ -1,9 +1,8 @@
 #include "uls.h"
 
 static char *rec_arg(char *arg, struct dirent *entry) {
-    if (mx_strcmp(arg, "/") == 0) {
+    if (mx_strcmp(arg, "/") == 0)
         return mx_strjoin(arg, entry->d_name);
-    }
     char *temp_arg = mx_strjoin(arg, "/");
     char *file_name = mx_strjoin(temp_arg, entry->d_name);
 
@@ -11,15 +10,8 @@ static char *rec_arg(char *arg, struct dirent *entry) {
     return file_name;
 }
 
-t_file *mx_create_t_file() {
-    t_file *file = (t_file*)malloc(sizeof(t_file));
-    file->full_path = NULL;
-    file->error = false;
-    return file;
-}
-
 static void print_error(char *first_part, char *text,
-char *second_part, char *third_part) {
+                        char *second_part, char *third_part) {
     int len1 = mx_strlen(first_part);
     int len2 = mx_strlen(text);
     int len3 = mx_strlen(second_part);
@@ -35,23 +27,23 @@ char *second_part, char *third_part) {
     free(error);
 }
 
-bool mx_if_dot(char *d_name) {
+static bool if_dot(char *d_name) {
     if (d_name[0] == '.' && d_name[1] == '.' && d_name[2] == '\0')
         return true;
     if (d_name[0] == '.' && d_name[1] == '\0')
         return true;
-    else 
+    else
         return false;
 }
 
-static void fill_list(DIR *m_dir, t_flags *flags, t_list **files, t_file *dir)
-{
+static void fill_list(DIR *m_dir, t_flags *flags,
+                      t_list **files, t_file *dir) {
     t_file *file = NULL;
     t_dirent *dirent = NULL;
 
     while ((dirent = readdir(m_dir)) != NULL) {
         file = mx_create_t_file();
-        if (flags->A == false || mx_if_dot(dirent->d_name) == true) {
+        if (flags->A == false || if_dot(dirent->d_name) == true) {
             if (dirent->d_name[0] == '.') {
                 free(file);
                 continue;
@@ -59,7 +51,7 @@ static void fill_list(DIR *m_dir, t_flags *flags, t_list **files, t_file *dir)
         }
         if (dir->full_path != NULL)
             file->full_path = rec_arg(dir->full_path, dirent);
-        else 
+        else
             file->full_path = rec_arg(dir->d_name, dirent);
         lstat(file->full_path, &file->stat);
         mx_strcpy(file->d_name, dirent->d_name);
@@ -74,9 +66,8 @@ t_list *mx_process_dir(t_file *dir, t_flags *flags) {
 
     if (dir->full_path != NULL)
         m_dir = opendir(dir->full_path);
-    else {
+    else
         m_dir = opendir(dir->d_name);
-    }
     if (m_dir != NULL) {
         fill_list(m_dir, flags, &files, dir);
         closedir(m_dir);

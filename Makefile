@@ -24,6 +24,8 @@ SRC  = 	free_functions.c \
 		mx_save_args.c \
 		mx_sort_files.c \
 		mx_sort_lists.c \
+		long_format_2.c \
+		long_format_3.c \
 
 
 SRCS = $(addprefix src/, $(SRC))

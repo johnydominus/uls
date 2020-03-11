@@ -14,7 +14,7 @@
 #include <time.h>
 #include <string.h>
 
-#define MX_USED_FLAGS "ACFGRSUcflmnprtux1"
+#define MX_USED_FLAGS "ACFGRSUclmprtux1"
 
 #define MX_RED     "\x1b[31m"
 #define MX_GREEN   "\x1b[32m"
@@ -39,11 +39,9 @@ typedef struct {
     bool C;
     bool c;
     bool F;
-    bool f;
     bool G;
     bool l;
     bool m;
-    bool n;
     bool p;
     bool R;
     bool r;
@@ -132,6 +130,12 @@ t_list *mx_sort_lists(t_list *lst, bool (*cmp)(void *, void*, bool reverse),
 t_flags *flags);
 void mx_print_with_tabl(long num, long num_of_dig, bool dig);
 char mx_which_file(t_file *file);
+long mx_strlen_own(t_file *file);
+long mx_strlen_grp(t_file *file);
+void mx_set_daddy(t_daddy *daddy);
+void mx_print_link(t_file *file);
+void mx_print_major_minor(t_file *file, long ma_size);
+void mx_print_errors_list(t_list *files);
 
 //Sorting comparators:
 bool mx_size_cmp(void *data1, void *data2, bool reverse);

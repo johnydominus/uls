@@ -9,6 +9,14 @@ void mx_print_name_list(t_list *files, t_flags* flags) {
     }
 }
 
+t_file *mx_create_t_file(void) {
+    t_file *file = (t_file*)malloc(sizeof(t_file));
+
+    file->full_path = NULL;
+    file->error = false;
+    return file;
+}
+
 void mx_output(t_flags *flags, t_list *files) {
     if (flags->one
         || (!isatty(1)
