@@ -85,7 +85,7 @@ void mx_print_long_format(t_list *files, t_flags *flags) {
                 mx_print_with_tabl(temp->stat.st_size, daddy.size, false);
             mx_printstr(" ");
             mx_print_time(temp, flags);
-            mx_printstr(temp->d_name);
+            mx_print_filename(temp, flags);
             mx_print_link(temp);
             mx_printstr("\n");
         }

@@ -28,30 +28,36 @@ t_list **files_args, t_list **dir_args) {
         mx_push_front(files_args, new_file);
 }
 
-t_list *mx_file_args_to_list (int *i, t_list **dir_args,
-                              int argc, char **argv) {
+static void push_file(t_file **file, char *argv,
+t_list **files_args, t_list **dir_args) {
+    mx_strcpy((*file)->d_name, argv);
+    if (MX_ISLNK((*file)->stat.st_mode) == true && mx_OMG_auditor(2) == false)
+        mx_push_link(file, files_args, dir_args);
+    else if (MX_ISDIR((*file)->stat.st_mode) == true)
+        mx_push_front(dir_args, (*file));
+    else 
+        mx_push_front(files_args, *file);
+
+}
+
+static void *return_dot(t_file **file, t_list **dir_args) {
+    mx_strcpy((*file)->d_name, ".");
+    mx_push_front(dir_args, *file);
+    return NULL;
+}
+
+t_list *mx_file_args_to_list(int *i, t_list **dir_args,
+int argc, char **argv) {
     t_list *files_args = NULL;
     t_list *errors = NULL;
     t_file *file = mx_create_t_file();
 
-    if (argc == *i) {
-        mx_strcpy(file->d_name, ".");
-        mx_push_front(dir_args, file);
-        return NULL;
-    }
+    if (argc == *i)
+        return return_dot(&file, dir_args);
     else {
         for (; *i < argc; (*i)++) {
-            if (lstat(argv[*i], &file->stat) == 0) {
-                mx_strcpy(file->d_name, argv[*i]);
-                if (MX_ISLNK(file->stat.st_mode) == true
-                    && mx_OMG_auditor(2) == false) {
-                    mx_push_link(&file, &files_args, dir_args);
-                }
-                else if (MX_ISDIR(file->stat.st_mode) == true)
-                    mx_push_front(dir_args, file);
-                else 
-                    mx_push_front(&files_args, file);
-            }
+            if (lstat(argv[*i], &file->stat) == 0)
+                push_file(&file, argv[*i], &files_args, dir_args);
             else {
                 mx_push_front(&errors, mx_four_to_one("uls: ", argv[*i],
                 ": ", strerror(errno)));
