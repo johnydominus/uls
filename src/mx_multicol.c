@@ -1,23 +1,5 @@
 #include "uls.h"
 
-int mx_add_symb(t_file *file, t_flags *flags) {
-    if (flags->F || flags->p) {
-        if (MX_ISDIR(file->stat.st_mode))
-            return 1;
-    }
-    if (flags->F) {
-        if (MX_ISLNK(file->stat.st_mode))
-            return 1;
-        else if (MX_ISSOCK(file->stat.st_mode))
-            return 1;
-        else if (MX_ISFIFO(file->stat.st_mode))
-            return 1;
-        else if (MX_ISEXEC(file->stat.st_mode))
-            return 1;
-    }
-    return 0;
-}
-
 static t_multicol *multicol_subinit(t_multicol *multicol) {
     multicol->col_width = ((8 - (multicol->max % 8)) + multicol->max);
     while (multicol->col_width % 8 != 0)
