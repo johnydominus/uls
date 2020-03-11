@@ -13,9 +13,9 @@ char *mx_itoa(int number) {
     char *num = NULL;
 
     if (number == -2147483648)
-        num = "-2147483648";
+        num = mx_strdup("-2147483648");
     else if (number == 0)
-        num = "0";
+        num = mx_strdup("0");
     else {
         check_minus(&minus, &number, &len);
         temp = number;
