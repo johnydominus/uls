@@ -50,7 +50,7 @@ void mx_print_time(t_file *file, t_flags *flags) {
     mx_printchar(' ');
     for (int i = 8; i < 11; i++)            // day
         mx_printchar(time[i]);
-    if ((curr_time - 15778463) > *file_time || curr_time < *file_time) {
+    if ((curr_time - 15768000) > *file_time || curr_time < *file_time) {
         mx_printchar(' ');
         for(int i = 20; i < 24; ++i)
             mx_printchar(time[i]);          //year
