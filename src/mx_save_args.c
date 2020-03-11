@@ -67,6 +67,5 @@ int argc, char **argv) {
         }
     }
     mx_print_errors_list(errors);
-    free(file);
     return files_args;
 }
