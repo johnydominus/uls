@@ -1,7 +1,7 @@
 #include "uls.h"
 
-t_list *mx_sort_lists(t_list *lst, 
-                      bool (*cmp)(void *, void*, 
+t_list *mx_sort_lists(t_list *lst,
+                      bool (*cmp)(void *, void*,
                       bool reverse),
                       t_flags *flags) {
     if (!lst && !cmp)
