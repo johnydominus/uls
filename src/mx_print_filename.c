@@ -17,23 +17,4 @@ void mx_print_filename (t_file *file, t_flags *flags) {
     mx_printstr(file->d_name);
     if (flags->G)
         mx_printstr(MX_RESET);
-    // if (flags->F || flags->p) {
-    //     if (MX_ISDIR(file->stat.st_mode))
-    //         mx_printchar('/');
-    // }
-    // if (flags->F) {
-    //     if (MX_ISDIR(file->stat.st_mode))
-    //         mx_printchar('/');
-    //     else if (MX_ISREG(file->stat.st_mode)
-    //             && MX_ISEXEC(file->stat.st_mode))
-    //         mx_printchar('*');
-    //     else if (MX_ISLNK(file->stat.st_mode))
-    //         mx_printchar('@');
-    //     else if (MX_ISSOCK(file->stat.st_mode))
-    //         mx_printchar('=');
-    //     else if (MX_ISWHT(file->stat.st_mode))
-    //         mx_printchar('%');
-    //     else if (MX_ISFIFO(file->stat.st_mode))
-    //         mx_printchar('|');
-    // }
 }

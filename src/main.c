@@ -7,7 +7,7 @@ t_print fd, t_list *dirs_args) {
     mx_free_list(&alist);
 }
 
-bool mx_omg_auditor(int set) {
+bool mx_OMG_auditor(int set) {
     static bool l_flag = false;
 
     if (set == 1)
@@ -26,7 +26,7 @@ int main (int argc, char **argv) {
     mx_flag_parser(&i, argc, argv, flags);
     flags->printpath = (i + 2 > argc) ? false : true;
     if (flags->l == true)
-       mx_omg_auditor(1);
+       mx_OMG_auditor(1);
     files_args = mx_file_args_to_list(&i, &dirs_args, argc, argv);
     if (files_args != NULL) {
         flags->file_args = true;
@@ -39,4 +39,5 @@ int main (int argc, char **argv) {
         auditor_costil(dirs_args, flags, DIREC, dirs_args);
     }
     free(flags);
+    system("leaks -q uls");
 }

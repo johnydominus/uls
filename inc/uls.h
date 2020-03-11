@@ -24,15 +24,14 @@
 #define MX_CYAN    "\x1b[36m"
 #define MX_RESET   "\x1b[0m"
 
-#define MX_ISBLK(mode) (((mode) & S_IFMT) == S_IFBLK)
-#define MX_ISCHR(mode) (((mode) & S_IFMT) == S_IFCHR)
-#define MX_ISDIR(mode) (((mode) & S_IFMT) == S_IFDIR)
-#define MX_ISLNK(mode) (((mode) & S_IFMT) == S_IFLNK)
-#define MX_ISSOCK(mode) (((mode) & S_IFMT) == S_IFSOCK)
-#define MX_ISFIFO(mode) (((mode) & S_IFMT) == S_IFIFO)
-#define MX_ISWHT(mode) (((mode) & S_IFMT) == S_IFWHT)
-#define MX_ISREG(mode) (((mode) & S_IFMT) == S_IFREG)
-#define MX_ISEXEC(mode) ((mode) & S_IXUSR)
+#define MX_ISBLK(m) (((m) & S_IFMT) == S_IFBLK)     //block special
+#define MX_ISCHR(m) (((m) & S_IFMT) == S_IFCHR)     //char special
+#define MX_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)     //directory
+#define MX_ISFIFO(m) (((m) & S_IFMT) == S_IFIFO)    //fifo or socket
+#define MX_ISREG(m) (((m) & S_IFMT) == S_IFREG)     //regular fil
+#define MX_ISLNK(m) (((m) & S_IFMT) == S_IFLNK)     //symbolic link
+#define MX_ISSOCK(m) (((m) & S_IFMT) == S_IFSOCK)   //socket
+#define MX_ISEXEC(m) (MX_ISREG(m) && m & S_IXUSR)   //executable
 
 typedef struct {
     bool one;
