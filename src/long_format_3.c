@@ -45,7 +45,7 @@ void mx_print_with_tabl(long num, long num_of_dig, bool name) {
 
     if (name == true) {
         mx_printstr(result);
-        for (num_of_dig = num_of_dig - mx_strlen(result); num_of_dig > 0;
+        for (num_of_dig = num_of_dig - mx_strlen(result) - 1; num_of_dig > 0;
              num_of_dig--)
             mx_printchar(' ');
     }

@@ -11,8 +11,6 @@ void mx_user_group(t_file *file, t_daddy *daddy) {
     struct passwd *pw = getpwuid(file->stat.st_uid);
     struct group *group = getgrgid(file->stat.st_gid);
 
-    if (pw == NULL)
-        printf("%s\n", strerror(errno));
     mx_printchar(' ');
     if (pw == NULL) 
         mx_print_with_tabl(file->stat.st_uid, daddy->own_name, true);

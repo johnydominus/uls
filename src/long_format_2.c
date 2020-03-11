@@ -60,7 +60,8 @@ static void print_hex(long minor) {
     mx_printstr(" 0x");
     for (int i = mx_strlen(hex); i < 8; i++)
         mx_printchar('0');
-    mx_printstr(mx_nbr_to_hex(minor));
+    mx_printstr(hex);
+    mx_strdel(&hex);
 }
 
 void mx_print_major_minor(t_file *file, long ma_size) {

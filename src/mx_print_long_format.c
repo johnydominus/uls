@@ -11,7 +11,8 @@ static void daddy_love_auditor(t_daddy *daddy) {
         num_of_dig++;
     daddy->n_link = num_of_dig;
     if (daddy->ma_size != 0) {
-        daddy->ma_size += 2;
+        if (daddy->ma_size < 4)
+            daddy->ma_size = 4;
         if (daddy->size > 8)
             daddy->ma_size += daddy->size - 8;
         else
@@ -26,7 +27,7 @@ static void fuck_auditor(t_file *file, t_daddy *daddy) {
     for (; major > 0; major /= 10)
         size++;
     if (major == 0)
-        size += 2;
+        size++;
     if (daddy->ma_size < size)
         daddy->ma_size = size;
 }
@@ -77,7 +78,6 @@ void mx_print_long_format(t_list *files, t_flags *flags) {
     if (flags->l == true) {
         t_daddy daddy = who_the_daddy(files);
 
-        // printf("%ld\n", daddy.ma_size);
         print_total(files, daddy.total, flags);
         for (t_list *cur = files; cur; cur = cur->next) {
             t_file *temp = (t_file*)cur->data;

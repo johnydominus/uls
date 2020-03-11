@@ -39,5 +39,5 @@ int main (int argc, char **argv) {
         auditor_costil(dirs_args, flags, DIREC, dirs_args);
     }
     free(flags);
-    // system("leaks -q uls");
+    system("leaks -q uls");
 }
