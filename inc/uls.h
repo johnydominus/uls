@@ -53,6 +53,7 @@ typedef struct {
     bool first;
     bool forcedc;
     bool printpath;
+    bool file_args;
 } t_flags;
 
 typedef struct dirent t_dirent;

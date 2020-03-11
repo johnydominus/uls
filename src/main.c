@@ -1,6 +1,7 @@
 #include "uls.h"
 
-static void auditor_costil(t_list *alist, t_flags *flags, t_print fd) {
+static void auditor_costil(t_list *alist, t_flags *flags,
+t_print fd, t_list *dirs_args) {
     mx_sort_files(alist, flags);
     mx_process_list(fd, alist, flags);
     mx_free_list(&alist);
@@ -28,12 +29,15 @@ int main (int argc, char **argv) {
        mx_OMG_auditor(1);
     files_args = mx_file_args_to_list(&i, &dirs_args, argc, argv);
     if (files_args != NULL) {
-        auditor_costil(files_args, flags, ALL);
+        flags->file_args = true;
+        auditor_costil(files_args, flags, ALL, dirs_args);
         if (dirs_args)
             mx_printchar('\n');
     }
-    if (dirs_args != NULL)
-        auditor_costil(dirs_args, flags, DIREC);
+    if (dirs_args != NULL) {
+        flags->file_args = false;
+        auditor_costil(dirs_args, flags, DIREC, dirs_args);
+    }
     free(flags);
     // system("leaks -q uls");
 }
