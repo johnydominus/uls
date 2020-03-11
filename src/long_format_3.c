@@ -55,6 +55,7 @@ void mx_print_with_tabl(long num, long num_of_dig, bool name) {
             mx_printchar(' ');
         mx_printstr(result);
     }
+    free(result);
 }
 
 long mx_strlen_own(t_file *file) {
