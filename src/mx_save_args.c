@@ -41,6 +41,7 @@ t_list **files_args, t_list **dir_args) {
 }
 
 static void *return_dot(t_file **file, t_list **dir_args) {
+    *file = mx_create_t_file();
     mx_strcpy((*file)->d_name, ".");
     mx_push_front(dir_args, *file);
     return NULL;
@@ -50,19 +51,19 @@ t_list *mx_file_args_to_list(int *i, t_list **dir_args,
 int argc, char **argv) {
     t_list *files_args = NULL;
     t_list *errors = NULL;
-    t_file *file = mx_create_t_file();
+    t_file *file = NULL;
 
     if (argc == *i)
         return return_dot(&file, dir_args);
     else {
         for (; *i < argc; (*i)++) {
+            file = mx_create_t_file();
             if (lstat(argv[*i], &file->stat) == 0)
                 push_file(&file, argv[*i], &files_args, dir_args);
             else {
                 mx_push_front(&errors, mx_four_to_one("uls: ", argv[*i],
                 ": ", strerror(errno)));
             }
-            file = mx_create_t_file();
         }
     }
     mx_print_errors_list(errors);
