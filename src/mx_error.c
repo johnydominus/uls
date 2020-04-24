@@ -42,9 +42,11 @@ void mx_error(t_error error_type, char *argument) {
             mx_printerr(argument);
             mx_printerr(": No such file or directory\n");
             break;
+
         case ILLEGAL_FLAG:
             invalid_flag_error(argument);
             break;
+
         default:
             break;
     }
