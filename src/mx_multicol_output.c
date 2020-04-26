@@ -63,7 +63,6 @@ void mx_c_output(t_list *files, t_flags *flags, t_multicol *mltcl) {
 
 void mx_x_output(t_list *files, t_flags *flags, t_multicol *mltcl) {
     int prev_len = 0;
-    t_list *file = files;
     t_file *data = NULL;
 
     for (int i = 0; i < mltcl->rows; ++i) {

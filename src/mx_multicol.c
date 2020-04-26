@@ -14,7 +14,7 @@ static t_multicol *multicol_subinit(t_multicol *multicol) {
     return multicol;
 }
 
-static t_multicol *multicol_init(t_list *files, t_flags *flags) {
+static t_multicol *multicol_init(t_list *files) {
     t_multicol *multicol = (t_multicol*)malloc(sizeof(t_multicol));
 
     multicol->files_num = 0;
@@ -35,7 +35,7 @@ static t_multicol *multicol_init(t_list *files, t_flags *flags) {
 }
 
 void mx_multicol_output(t_list *files, t_flags *flags) {
-    t_multicol *multicol = multicol_init(files, flags);
+    t_multicol *multicol = multicol_init(files);
     t_list *iter = files;
 
     if (flags->x)

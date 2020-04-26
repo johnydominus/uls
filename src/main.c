@@ -1,7 +1,7 @@
 #include "uls.h"
 
 static void auditor_costil(t_list *alist, t_flags *flags,
-t_print fd, t_list *dirs_args) {
+t_print fd) {
     mx_sort_files(alist, flags);
     mx_process_list(fd, alist, flags);
     mx_free_list(&alist);
@@ -17,6 +17,14 @@ bool mx_omg_auditor(int set) {
     return l_flag;
 }
 
+static int why_i_love_auditor(t_flags **flags) {
+    free (*flags);
+    if (errno != 0)
+        return 1;
+    else
+        return 0;
+}
+
 int main (int argc, char **argv) {
     t_flags *flags = mx_init_flags();
     t_list *files_args = NULL;
@@ -30,12 +38,12 @@ int main (int argc, char **argv) {
     files_args = mx_file_args_to_list(&i, &dirs_args, argc, argv);
     if (files_args != NULL) {
         flags->file_args = true;
-        auditor_costil(files_args, flags, ALL, dirs_args);
+        auditor_costil(files_args, flags, ALL);
         mx_printchar((dirs_args) ? '\n' : '\0');
     }
     if (dirs_args != NULL) {
         flags->file_args = false;
-        auditor_costil(dirs_args, flags, DIREC, dirs_args);
+        auditor_costil(dirs_args, flags, DIREC);
     }
-    free(flags);
+    return why_i_love_auditor(&flags);
 }
