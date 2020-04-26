@@ -27,8 +27,8 @@ void mx_print_link(t_file *file) {
         char *buf = NULL;
         ssize_t size = (file->stat.st_size < 100) ? 100 : file->stat.st_size;
         char *name = (file->full_path != NULL) ?
-        file->full_path : file->d_name;
 
+        file->full_path : file->d_name;
         buf = mx_strnew(size + 1);
         size = readlink(name, buf, size + 1);
         if (size > 0) {

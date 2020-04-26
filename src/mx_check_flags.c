@@ -13,7 +13,6 @@ static void checkflag_one(char c, t_flags *flags) {
         flags->one = false;
         flags->x = false;
         flags->l = false;
-        // flags->m = false;
         flags->forcedc = true;
     }
     else if (c == 'c') {
@@ -52,7 +51,6 @@ static void checkflag_three(char c, t_flags *flags) {
         flags->one = false;
         flags->C = false;
         flags->l = false;
-//        flags->m = false;
     }
     else if (c == 'l') {
         flags->l = true;
@@ -63,7 +61,6 @@ static void checkflag_three(char c, t_flags *flags) {
     }
 }
 
-//FILE PRIME FUNCTION
 void mx_check_flags(char c, t_flags *flags) {
     checkflag_one(c, flags);
     checkflag_two(c, flags);

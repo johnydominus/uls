@@ -29,7 +29,7 @@ static t_multicol *multicol_init(t_list *files, t_flags *flags) {
 
         ++multicol->files_num;
         if (len > multicol->max)
-            multicol->max = len /*+ mx_add_symb(temp, flags)*/;
+            multicol->max = len; 
     }
     return multicol_subinit(multicol);
 }

@@ -54,13 +54,6 @@ static t_daddy who_the_daddy(t_list *files) {
     return daddy;
 }
 
-/*
-*if(MX_ISLNK(((t_file*)files->data)->stat.st_size) == true) {
-*    mx_printstr("tut\n");
-*}
-* Why it does not work??
-*/
-
 static void print_total(t_list *files, long total, t_flags *flags) {
     if (flags->file_args == true)
         return;

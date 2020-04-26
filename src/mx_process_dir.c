@@ -59,7 +59,6 @@ static void fill_list(DIR *m_dir, t_flags *flags,
     }
 }
 
-//FILE PRIME FUNCTION
 t_list *mx_process_dir(t_file *dir, t_flags *flags) {
     DIR *m_dir = NULL;
     t_list *files = NULL;
