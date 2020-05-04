@@ -67,6 +67,6 @@ long mx_strlen_own(t_file *file) {
             result++;
     }
     else
-        return strlen(pw->pw_name);
+        return mx_strlen(pw->pw_name);
     return result;
 }
