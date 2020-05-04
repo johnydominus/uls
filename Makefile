@@ -34,9 +34,9 @@ OBJ = $(SRC:%.c=%.o)
 
 OBJO = $(addprefix obj/, $(OBJ))
 
-# CFLGS = -std=c11 -Wall -Wpedantic -Werror -Wextra -g -fsanitize=address
+CFLGS = -std=c11 -Wall -Wpedantic -Werror -Wextra 
 # CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address # Warnig does not error 
-CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -fsanitize=undefined -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning;
+# CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -fsanitize=undefined -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning;
 # CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning; To use leaks command;
 
 all: install
