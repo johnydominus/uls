@@ -1,8 +1,13 @@
 NAME = uls
-INC = ./inc/
-INCLIB = ./libmx/inc/
-HEADTMP = ./uls.h ./libmx.h
 
+SRCD = src
+INCD = inc
+OBJD = obj
+LBMXD = libmx
+LIBMX = libmx
+
+LBMX = libmx.a
+INC = uls.h
 SRC  = 	free_functions.c \
 		long_format.c \
 		main.c \
@@ -27,35 +32,48 @@ SRC  = 	free_functions.c \
 		long_format_2.c \
 		long_format_3.c \
 
+INCLUDE = -I $(LBMXD)/$(INCD) \
+	-I $(INCD) \
 
-SRCS = $(addprefix src/, $(SRC))
+LBMXS = $(addprefix $(LBMXD)/, $(LBMX))
+INCS = $(addprefix $(INCD)/, $(INC))
+SRCS = $(addprefix $(SRCD)/, $(SRC))
+OBJS = $(addprefix $(OBJD)/, $(SRC:%.c=%.o))
+	
+CFLAGS = -std=c11 -g $(addprefix -W, all extra error pedantic)
+CC = clang
 
-OBJ = $(SRC:%.c=%.o)
+all: $(NAME)
 
-OBJO = $(addprefix obj/, $(OBJ))
+install: $(NAME) clean
 
-CFLGS = -std=c11 -Wall -Wpedantic -Werror -Wextra 
-# CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address # Warnig does not error 
-# CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -fsanitize=address -fsanitize=undefined -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning;
-# CFLGS = -std=c11 -Wall -Wpedantic -Wextra -g -Wno-unused-function -Wno-unused-parameter -Wno-unused-variable #Withou "unused" warning; To use leaks command;
+$(LBMXS):
+	@make -sC $(LBMXD)
 
-all: install
+$(LIBMX): $(LBMXS)
+	@make -sC $(LBMXD)
+	
+$(NAME): $(OBJS) $(LIBMX)
+	@$(CC) $(CFLAGS) $(LBMXS) $(OBJS) -o $@
+	@printf "\x1b[32;1m$@ created\x1b[0m\n"
 
-install:
-	@make -C libmx install
-	@make -C libmx/ -f Makefile clean
-	@clang $(CFLGS) -I $(INC) -I $(INCLIB) -c $(SRCS)
-	@mkdir -p obj
-	@mv $(OBJ) ./obj
-	@clang $(CFLGS) $(OBJO) libmx/libmx.a -o $(NAME)
+$(OBJD)/%.o: $(SRCD)/%.c $(INCS)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
+	@printf "\x1b[32mcompiled: \x1b[0m[$(<:$(SRCD)/%.c=%.c)]\n"
 
-clean:
-	@rm -rf ./obj
-	@rm -rf libmx.a
-	@rm -rf ./libmx/obj
+$(OBJS): | $(OBJD)
+
+$(OBJD):
+	@mkdir -p $@
 
 uninstall: clean
-	@make -C libmx/ -f Makefile uninstall
+	@make -sC $(LBMXD) $@
 	@rm -rf $(NAME)
+	@printf "\x1b[34;1mdeleted $(NAME)\x1b[0m\n"
 
-reinstall: uninstall all
+clean:
+	@make -sC $(LBMXD) $@
+	@rm -rf $(OBJD)
+	@printf "\x1b[34;1mdeleted $(OBJD)\x1b[0m\n"
+
+reinstall: uninstall install
