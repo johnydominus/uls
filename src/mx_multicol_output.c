@@ -46,13 +46,13 @@ void mx_c_output(t_list *files, t_flags *flags, t_multicol *mltcl) {
     for (int i = 0; i < mltcl->rows; ++i) {
         for (int j = 0; j < mltcl->files_num; j += mltcl->rows) {
             data = get_nth_file(files, i + j);
-            if (j != 0 && ((i + j) < mltcl->files_num)) { 
-                if (flags->G)
-                    count_spaces(mltcl->max, prev_len);
-                else
-                    count_tabs(mltcl->max, prev_len);
-            }
             if (i + j < mltcl->files_num) {
+                if (j != 0 && ((i + j) < mltcl->files_num)) {
+                    if (flags->G)
+                        count_spaces(mltcl->max, prev_len);
+                    else
+                        count_tabs(mltcl->max, prev_len);
+                }
                 mx_print_filename(data, flags);
                 prev_len = mx_strlen(data->d_name);
             }
@@ -69,9 +69,9 @@ void mx_x_output(t_list *files, t_flags *flags, t_multicol *mltcl) {
         int x = i * mltcl->cols - i;
 
         for (int j = x; j < mltcl->cols * (i + 1); ++j) {
-            if (j != x && ((i + j) < mltcl->cols * (i + 1)))
-                count_tabs(mltcl->max, prev_len);
             if (i + j < mltcl->cols * (i + 1) && i + j < mltcl->files_num) {
+                if (j != x && ((i + j) < mltcl->cols * (i + 1)))
+                    count_tabs(mltcl->max, prev_len);
                 data = get_nth_file(files, i + j);
                 mx_print_filename(data, flags);
                 prev_len = mx_strlen(data->d_name);
